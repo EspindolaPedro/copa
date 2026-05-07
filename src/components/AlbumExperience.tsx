@@ -312,6 +312,8 @@ export function AlbumExperience() {
         </div>
       </section>
 
+      <FlagsMarquee />
+
       {/* SHOWCASE */}
       <section
         ref={showcaseRef}
