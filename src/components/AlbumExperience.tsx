@@ -150,15 +150,13 @@ export function AlbumExperience() {
 
       // Pin showcase + drive stacking + cycling
       const stackTarget = (order: number) => {
-        const STACK_SCALE = window.innerWidth < 768 ? 1.15 : 1.55;
-        const scaledH = CARD_H * STACK_SCALE;
-        const baseX = W() * 0.08;
-        const baseY = H() * 0.5 - scaledH / 2;
+        const baseX = W() * 0.06;
+        const baseY = H() * 0.5 - CARD_H / 2;
         return {
-          x: baseX - order * 22,
-          y: baseY + order * 18,
+          x: baseX - order * 16,
+          y: baseY + order * 12,
           rot: -2 - order * 1.5,
-          scale: STACK_SCALE - order * 0.07,
+          scale: 1 - order * 0.05,
         };
       };
 
