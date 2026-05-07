@@ -313,15 +313,15 @@ export function AlbumExperience() {
             <button
               className="group relative inline-flex items-center gap-4 rounded-full p-1.5 pr-2 font-condensed text-base tracking-[0.28em] text-white transition-all duration-500 hover:gap-6 sm:text-lg"
               style={{
-                backgroundImage: `linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%)`,
-                boxShadow: `0 20px 50px -15px rgba(220,38,38,0.55), inset 0 1px 0 rgba(255,255,255,0.12), 0 0 0 1px rgba(255,255,255,0.06)`,
+                backgroundImage: `linear-gradient(135deg, ${RED} 0%, #b91c1c 50%, ${RED} 100%)`,
+                boxShadow: `0 20px 50px -15px rgba(220,38,38,0.7), inset 0 1px 0 rgba(255,255,255,0.25), 0 0 0 1px rgba(255,255,255,0.1)`,
               }}
             >
               {/* Animated gradient ring */}
               <span
                 className="pointer-events-none absolute -inset-px rounded-full opacity-70 blur-[2px] transition-opacity duration-500 group-hover:opacity-100"
                 style={{
-                  backgroundImage: `conic-gradient(from 0deg, ${RED}, #f59e0b, ${RED}, #b91c1c, ${RED})`,
+                  backgroundImage: `conic-gradient(from 0deg, #fff, #fbbf24, #fff, #fca5a5, #fff)`,
                   WebkitMask: "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
                   WebkitMaskComposite: "xor",
                   maskComposite: "exclude",
@@ -331,16 +331,13 @@ export function AlbumExperience() {
               />
               {/* Red glow blob */}
               <span
-                className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-32 w-32 -translate-x-1/2 -translate-y-1/2 rounded-full opacity-60 blur-2xl transition-opacity duration-500 group-hover:opacity-90"
+                className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-32 w-32 -translate-x-1/2 -translate-y-1/2 rounded-full opacity-70 blur-2xl transition-opacity duration-500 group-hover:opacity-100"
                 style={{ backgroundColor: RED }}
               />
 
               <span className="relative z-10 pl-6 pr-2 sm:pl-8">ABRIR PACOTINHO</span>
 
-              <span
-                className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full text-white shadow-inner transition-transform duration-500 group-hover:rotate-[360deg] sm:h-14 sm:w-14"
-                style={{ backgroundImage: `linear-gradient(135deg, ${RED} 0%, #b91c1c 100%)`, boxShadow: "inset 0 1px 0 rgba(255,255,255,0.25)" }}
-              >
+              <span className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full border border-white/40 bg-white/10 text-white backdrop-blur-sm transition-transform duration-500 group-hover:rotate-[360deg] sm:h-14 sm:w-14">
                 <ArrowRight className="h-5 w-5" strokeWidth={2.5} />
               </span>
             </button>
