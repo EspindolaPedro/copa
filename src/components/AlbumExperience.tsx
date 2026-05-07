@@ -361,12 +361,12 @@ export function AlbumExperience() {
           </div>
 
           {/* Right: history panel */}
-          <div className="col-span-5 flex flex-col justify-center">
-            <div key={"panel" + active} className="rounded-3xl border border-white/15 bg-black/30 p-8 backdrop-blur-md" style={{ animation: "fadeIn 0.6s ease" }}>
+          <div className="col-span-12 flex flex-col justify-center md:col-span-5">
+            <div key={"panel" + active} className="rounded-3xl border border-white/15 bg-black/30 p-5 backdrop-blur-md sm:p-8" style={{ animation: "fadeIn 0.6s ease" }}>
               <div className="font-condensed text-xs tracking-[0.4em] text-white/60">FICHA DO JOGADOR</div>
               <div className="mt-2 flex items-baseline gap-3">
-                <span className="font-display text-6xl text-white">{player.number}</span>
-                <span className="font-condensed text-xl tracking-[0.3em] text-white/80">{player.position}</span>
+                <span className="font-display text-5xl text-white sm:text-6xl">{player.number}</span>
+                <span className="font-condensed text-base tracking-[0.3em] text-white/80 sm:text-xl">{player.position}</span>
               </div>
 
               <div className="mt-6 space-y-2 border-t border-white/15 pt-6">
