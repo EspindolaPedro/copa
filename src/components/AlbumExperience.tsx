@@ -250,14 +250,9 @@ export function AlbumExperience() {
         </motion.div>
 
         <div className="relative z-20 mx-auto flex min-h-[calc(100vh-100px)] max-w-7xl flex-col items-center justify-center px-6 text-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="mb-6 inline-flex items-center gap-3 rounded-full border border-neutral-900/15 bg-white/70 px-5 py-2 backdrop-blur-md">
-            <span className="h-2 w-2 animate-pulse rounded-full" style={{ backgroundColor: RED }} />
-            <span className="font-condensed text-sm tracking-[0.3em] text-neutral-700">EDIÇÃO OFICIAL FIFA · USA · CAN · MEX</span>
-          </motion.div>
-
           <h1 ref={titleRef} className="font-display text-[clamp(4rem,15vw,12rem)] leading-[0.85] tracking-tighter text-neutral-900" style={{ perspective: "1000px" }}>
             {title.split("").map((ch, i) => (
-              <span key={i} className={`letter inline-block ${ch === " " ? "w-[0.3em]" : ""} ${i < 4 ? "" : "text-gradient-wc"}`}>
+              <span key={i} className={`letter inline-block ${ch === " " ? "w-[0.3em]" : ""}`} style={i >= 5 ? { color: RED } : undefined}>
                 {ch === " " ? "\u00A0" : ch}
               </span>
             ))}
@@ -265,7 +260,7 @@ export function AlbumExperience() {
 
           <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.4, duration: 0.8 }} className="mt-8 max-w-2xl text-balance text-lg leading-relaxed text-neutral-700 md:text-xl">
             <span className="font-display text-neutral-900">670 figurinhas.</span> 48 seleções.
-            Uma copa que vai entrar pra história — e o álbum que vai contar tudo.
+            Uma copa que vai entrar pra história. O álbum que vai contar tudo.
             <span className="block mt-2 text-base text-neutral-500">Cole, troque com os amigos e reviva cada gol até a final no MetLife.</span>
           </motion.p>
 
