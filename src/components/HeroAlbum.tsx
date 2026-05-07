@@ -9,12 +9,12 @@ import neymar from "@/assets/players/neymar.png";
 import pedri from "@/assets/players/pedri.png";
 
 const players = [
-  { src: mbappe, name: "MBAPPÉ", country: "FRA", x: "8%", y: "18%", rot: -8, delay: 0.1 },
-  { src: bellingham, name: "BELLINGHAM", country: "ENG", x: "22%", y: "55%", rot: 6, delay: 0.25 },
-  { src: cr7, name: "RONALDO", country: "POR", x: "70%", y: "12%", rot: 7, delay: 0.4 },
-  { src: neymar, name: "NEYMAR", country: "BRA", x: "78%", y: "52%", rot: -5, delay: 0.55 },
-  { src: haaland, name: "HAALAND", country: "NOR", x: "5%", y: "70%", rot: 10, delay: 0.7 },
-  { src: pedri, name: "PEDRI", country: "ESP", x: "82%", y: "78%", rot: -10, delay: 0.85 },
+  { src: mbappe, name: "MBAPPÉ", country: "FRA", x: "2%", y: "10%", rot: -8, delay: 0.1 },
+  { src: bellingham, name: "BELLINGHAM", country: "ENG", x: "0%", y: "45%", rot: 6, delay: 0.25 },
+  { src: cr7, name: "RONALDO", country: "POR", x: "78%", y: "8%", rot: 7, delay: 0.4 },
+  { src: neymar, name: "NEYMAR", country: "BRA", x: "80%", y: "44%", rot: -5, delay: 0.55 },
+  { src: haaland, name: "HAALAND", country: "NOR", x: "18%", y: "62%", rot: 10, delay: 0.7 },
+  { src: pedri, name: "PEDRI", country: "ESP", x: "62%", y: "62%", rot: -10, delay: 0.85 },
 ];
 
 export function HeroAlbum() {
