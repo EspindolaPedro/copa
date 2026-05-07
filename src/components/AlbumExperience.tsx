@@ -102,25 +102,6 @@ export function AlbumExperience() {
         });
       });
 
-      // Continuous floating + subtle wobble while in hero
-      const floats: gsap.core.Tween[] = [];
-      cardsRef.current.forEach((card, i) => {
-        if (!card) return;
-        floats.push(
-          gsap.to(card, {
-            yoyo: true,
-            repeat: -1,
-            duration: 2.4 + (i % 3) * 0.6,
-            ease: "sine.inOut",
-            delay: 1.4 + i * 0.1,
-            keyframes: {
-              "0%": {},
-              "50%": { yPercent: -4, rotation: `+=${i % 2 === 0 ? 2 : -2}` },
-              "100%": {},
-            },
-          })
-        );
-      });
 
       // Mouse parallax (only when in hero)
       let inHero = true;
