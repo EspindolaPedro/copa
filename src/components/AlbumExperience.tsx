@@ -314,7 +314,7 @@ export function AlbumExperience() {
               className="group relative inline-flex items-center gap-4 rounded-full p-1.5 pr-2 font-condensed text-base tracking-[0.28em] text-white transition-all duration-500 hover:gap-6 sm:text-lg"
               style={{
                 backgroundImage: `linear-gradient(135deg, ${RED} 0%, #b91c1c 50%, ${RED} 100%)`,
-                boxShadow: `0 20px 50px -15px rgba(220,38,38,0.7), inset 0 1px 0 rgba(255,255,255,0.25), 0 0 0 1px rgba(255,255,255,0.1)`,
+                boxShadow: `inset 0 1px 0 rgba(255,255,255,0.25), 0 0 0 1px rgba(255,255,255,0.1)`,
               }}
             >
               {/* Animated gradient ring */}
@@ -328,11 +328,6 @@ export function AlbumExperience() {
                   padding: "1.5px",
                   animation: "spin 6s linear infinite",
                 }}
-              />
-              {/* Red glow blob */}
-              <span
-                className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-32 w-32 -translate-x-1/2 -translate-y-1/2 rounded-full opacity-70 blur-2xl transition-opacity duration-500 group-hover:opacity-100"
-                style={{ backgroundColor: RED }}
               />
 
               <span className="relative z-10 pl-6 pr-2 sm:pl-8">ABRIR PACOTINHO</span>
