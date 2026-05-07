@@ -307,7 +307,7 @@ export function AlbumExperience() {
           <div
             className="relative h-full rounded-full"
             style={{
-              animation: "paniniLoad 2.6s cubic-bezier(.4,0,.2,1) forwards",
+              animation: "paniniLoad 1.9s cubic-bezier(.4,0,.2,1) forwards",
               background:
                 "linear-gradient(90deg, #fbbf24 0%, #ef4444 40%, #3b82f6 75%, #10b981 100%)",
               boxShadow:
