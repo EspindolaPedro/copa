@@ -337,8 +337,19 @@ export function AlbumExperience() {
 
               <span className="relative z-10 pl-6 pr-2 sm:pl-8">ABRIR PACOTINHO</span>
 
-              <span className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full border border-white/40 bg-white/10 text-white backdrop-blur-sm transition-transform duration-500 group-hover:rotate-[360deg] sm:h-14 sm:w-14">
-                <ArrowRight className="h-5 w-5" strokeWidth={2.5} />
+              <span
+                className="relative z-10 flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border border-white/50 text-white transition-transform duration-500 group-hover:rotate-[360deg] sm:h-14 sm:w-14"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(135deg, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.15) 45%, rgba(255,255,255,0.05) 100%)",
+                  backdropFilter: "blur(12px) saturate(180%)",
+                  WebkitBackdropFilter: "blur(12px) saturate(180%)",
+                  boxShadow:
+                    "inset 0 1px 1px rgba(255,255,255,0.6), inset 0 -1px 2px rgba(255,255,255,0.15), 0 4px 14px rgba(0,0,0,0.2)",
+                }}
+              >
+                <span className="pointer-events-none absolute inset-x-2 top-1 h-1/3 rounded-full bg-white/40 blur-[2px]" />
+                <ArrowRight className="relative h-5 w-5 drop-shadow-[0_1px_1px_rgba(0,0,0,0.25)]" strokeWidth={2.5} />
               </span>
             </button>
           </motion.div>
