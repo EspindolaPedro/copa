@@ -124,7 +124,7 @@ export function HeroAlbum() {
         {players.map((p) => (
           <motion.div
             key={p.name}
-            className="player-card absolute w-[140px] md:w-[180px]"
+            className="player-card absolute w-[200px] md:w-[260px] lg:w-[300px]"
             style={{ left: p.x, top: p.y, rotate: `${p.rot}deg` }}
             initial={{ opacity: 0, scale: 0.3, y: 100 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
