@@ -245,6 +245,15 @@ export function AlbumExperience() {
         },
       });
 
+      // Hide fixed cards layer once we scroll past the showcase (so it doesn't overlap the footer)
+      ScrollTrigger.create({
+        trigger: showcaseRef.current!,
+        start: "top top",
+        end: () => `+=${H() * (N + 1)}`,
+        onLeave: () => gsap.to(cardsLayerRef.current, { autoAlpha: 0, duration: 0.3 }),
+        onEnterBack: () => gsap.to(cardsLayerRef.current, { autoAlpha: 1, duration: 0.3 }),
+      });
+
       // Resize handling
       const onResize = () => { if (inHero) setScatter(); ScrollTrigger.refresh(); };
       window.addEventListener("resize", onResize);
