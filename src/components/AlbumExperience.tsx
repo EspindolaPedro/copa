@@ -100,28 +100,38 @@ export function AlbumExperience() {
         return { x: cx + offset, y: cy, rot: (i - (N - 1) / 2) * 6 };
       };
 
-      // Phase 1 — cards fly in from bottom/corners into the centered stack
+      // Phase 1 — cards rise from below, centered, into a stacked fan
       cardsRef.current.forEach((card, i) => {
         if (!card) return;
         const target = stackPos(i);
-        const fromCorner = i % 2 === 0
-          ? { x: -200, y: H() + 200 }
-          : { x: W() + 200, y: H() + 200 };
-        gsap.set(card, { ...fromCorner, rotation: target.rot + (i % 2 ? 90 : -90), scale: 0.5, opacity: 0, zIndex: 30 + i });
+        gsap.set(card, {
+          x: target.x,
+          y: H() + 300,
+          rotation: target.rot * 0.4,
+          scale: 0.9,
+          opacity: 0,
+          zIndex: 30 + i,
+        });
         gsap.to(card, {
-          x: target.x, y: target.y, rotation: target.rot, scale: 1, opacity: 1,
-          duration: 1.1, ease: "expo.out", delay: 0.3 + i * 0.1,
+          x: target.x,
+          y: target.y,
+          rotation: target.rot,
+          scale: 1,
+          opacity: 1,
+          duration: 1.0,
+          ease: "expo.out",
+          delay: 0.15 + i * 0.09,
         });
       });
 
-      // Phase 2 — at ~2.2s overlay slides up (frame), then cards scatter outward
-      const tl = gsap.timeline({ delay: 2.1 });
+      // Phase 2 — at ~2.4s overlay slides up like a frame; cards scatter to final positions
+      const tl = gsap.timeline({ delay: 2.4 });
       tl.to(overlayRef.current, {
         yPercent: -100,
-        duration: 0.8,
+        duration: 0.7,
         ease: "expo.inOut",
         onComplete: () => setLoading(false),
-      });
+      }, 0);
       cardsRef.current.forEach((card, i) => {
         if (!card) return;
         tl.to(card, {
@@ -129,8 +139,9 @@ export function AlbumExperience() {
           y: SCATTER[i].y * H(),
           rotation: SCATTER[i].rot,
           scale: 1,
-          duration: 0.9, ease: "expo.out",
-        }, 0.1 + i * 0.04);
+          duration: 0.85,
+          ease: "expo.out",
+        }, 0.15 + i * 0.04);
       });
 
       // Continuous floating animation (only while in hero)
