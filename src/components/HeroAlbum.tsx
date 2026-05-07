@@ -72,19 +72,19 @@ export function HeroAlbum() {
       {/* Glow orbs */}
       <motion.div
         className="absolute -left-40 top-20 h-[500px] w-[500px] rounded-full blur-3xl"
-        style={{ background: "radial-gradient(circle, oklch(0.62 0.24 25 / 0.4), transparent 70%)" }}
-        animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
+        style={{ background: "radial-gradient(circle, oklch(0.64 0.23 25 / 0.35), transparent 70%)" }}
+        animate={{ scale: [1, 1.2, 1], opacity: [0.4, 0.7, 0.4] }}
         transition={{ duration: 6, repeat: Infinity }}
       />
       <motion.div
         className="absolute -right-40 bottom-10 h-[600px] w-[600px] rounded-full blur-3xl"
-        style={{ background: "radial-gradient(circle, oklch(0.72 0.22 145 / 0.35), transparent 70%)" }}
-        animate={{ scale: [1.1, 1, 1.1], opacity: [0.6, 0.9, 0.6] }}
+        style={{ background: "radial-gradient(circle, oklch(0.55 0.18 240 / 0.4), transparent 70%)" }}
+        animate={{ scale: [1.1, 1, 1.1], opacity: [0.5, 0.8, 0.5] }}
         transition={{ duration: 8, repeat: Infinity }}
       />
       <motion.div
         className="absolute left-1/2 top-1/2 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl"
-        style={{ background: "radial-gradient(circle, oklch(0.85 0.17 90 / 0.25), transparent 70%)" }}
+        style={{ background: "radial-gradient(circle, oklch(0.82 0.15 85 / 0.18), transparent 70%)" }}
         animate={{ scale: [1, 1.3, 1] }}
         transition={{ duration: 5, repeat: Infinity }}
       />
