@@ -248,6 +248,56 @@ export function AlbumExperience() {
 
   return (
     <>
+      {/* LOADING OVERLAY — slides up like a frame */}
+      <div
+        ref={overlayRef}
+        className="fixed inset-0 z-[55] flex flex-col items-center justify-start pt-[14vh]"
+        style={{
+          backgroundColor: "#1f5a3a",
+          backgroundImage:
+            "linear-gradient(180deg, #1f5a3a 0%, #194a30 100%)",
+          willChange: "transform",
+        }}
+        aria-hidden={!loading}
+      >
+        {/* Decorative side strips (colorful confetti vibe) */}
+        <div
+          className="pointer-events-none absolute inset-y-0 left-0 w-[8%] sm:w-[10%] opacity-90"
+          style={{
+            backgroundImage:
+              "repeating-linear-gradient(135deg, #e63946 0 14px, #f4a261 14px 28px, #2a9d8f 28px 42px, #264653 42px 56px, #e9c46a 56px 70px, #457b9d 70px 84px)",
+            maskImage:
+              "radial-gradient(circle at 50% 50%, black 60%, transparent 62%)",
+            WebkitMaskImage:
+              "radial-gradient(circle at 50% 50%, black 60%, transparent 62%)",
+            maskSize: "30px 30px",
+            WebkitMaskSize: "30px 30px",
+            maskRepeat: "repeat",
+            WebkitMaskRepeat: "repeat",
+          }}
+        />
+        <div
+          className="pointer-events-none absolute inset-y-0 right-0 w-[8%] sm:w-[10%] opacity-90"
+          style={{
+            backgroundImage:
+              "repeating-linear-gradient(-135deg, #e63946 0 14px, #f4a261 14px 28px, #2a9d8f 28px 42px, #264653 42px 56px, #e9c46a 56px 70px, #457b9d 70px 84px)",
+            maskImage:
+              "radial-gradient(circle at 50% 50%, black 60%, transparent 62%)",
+            WebkitMaskImage:
+              "radial-gradient(circle at 50% 50%, black 60%, transparent 62%)",
+            maskSize: "30px 30px",
+            WebkitMaskSize: "30px 30px",
+            maskRepeat: "repeat",
+            WebkitMaskRepeat: "repeat",
+          }}
+        />
+
+        <img src={paniniLogo} alt="Panini" className="relative z-10 h-10 w-auto sm:h-12" />
+        <div className="relative z-10 mt-10 font-sans text-lg text-white/95 sm:text-2xl">
+          Carregando a experiência<span className="inline-block animate-pulse">...</span>
+        </div>
+      </div>
+
       {/* FIXED CARDS LAYER */}
       <div ref={cardsLayerRef} className={`pointer-events-none fixed inset-0 ${loading ? "z-[60]" : "z-30"}`}>
         {players.map((p, i) => (
