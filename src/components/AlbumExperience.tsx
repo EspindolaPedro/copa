@@ -215,45 +215,29 @@ export function AlbumExperience() {
       </div>
 
       {/* HERO */}
-      <section ref={heroRef} className="relative min-h-screen w-full overflow-hidden" style={{ backgroundColor: "oklch(0.98 0.005 90)" }}>
-        {/* Soft tonal blobs */}
-        <motion.div
-          className="absolute -left-40 top-20 h-[500px] w-[500px] rounded-full blur-3xl"
-          style={{ background: "radial-gradient(circle, oklch(0.64 0.23 25 / 0.18), transparent 70%)" }}
-          animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
-          transition={{ duration: 6, repeat: Infinity }}
-        />
-        <motion.div
-          className="absolute -right-40 bottom-10 h-[600px] w-[600px] rounded-full blur-3xl"
-          style={{ background: "radial-gradient(circle, oklch(0.55 0.18 240 / 0.18), transparent 70%)" }}
-          animate={{ scale: [1.1, 1, 1.1], opacity: [0.5, 0.8, 0.5] }}
-          transition={{ duration: 8, repeat: Infinity }}
-        />
+      <section ref={heroRef} className="relative min-h-screen w-full overflow-hidden" style={{ backgroundColor: "oklch(0.08 0.02 260)" }}>
+        {/* Galaxy background */}
+        <div className="absolute inset-0">
+          <Galaxy
+            mouseInteraction={false}
+            mouseRepulsion={false}
+            density={1}
+            glowIntensity={0.3}
+            saturation={0}
+            hueShift={140}
+            twinkleIntensity={0.3}
+            rotationSpeed={0.1}
+            repulsionStrength={2}
+            autoCenterRepulsion={0}
+            starSpeed={0.5}
+            speed={1}
+          />
+        </div>
 
-        {/* Pattern: dots */}
+        {/* Soft vignette */}
         <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: "radial-gradient(oklch(0.16 0.03 250 / 0.12) 1.5px, transparent 1.5px)",
-            backgroundSize: "26px 26px",
-          }}
-        />
-
-        {/* Pattern: diagonal stripes accent */}
-        <div
-          className="absolute inset-0 opacity-40"
-          style={{
-            backgroundImage:
-              "repeating-linear-gradient(135deg, oklch(0.64 0.23 25 / 0.05) 0 2px, transparent 2px 22px)",
-          }}
-        />
-
-        {/* Soft vignette to white center */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background: "radial-gradient(ellipse at center, oklch(1 0 0 / 0.7) 0%, transparent 70%)",
-          }}
+          className="pointer-events-none absolute inset-0"
+          style={{ background: "radial-gradient(ellipse at center, transparent 0%, oklch(0.06 0.02 260 / 0.7) 100%)" }}
         />
 
         <motion.div initial={{ y: -40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.8 }} className="relative z-40 flex items-center justify-between px-8 py-6 md:px-16">
