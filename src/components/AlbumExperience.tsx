@@ -72,7 +72,7 @@ export function AlbumExperience() {
       // Title letters
       const letters = titleRef.current?.querySelectorAll(".letter");
       if (letters) {
-        gsap.from(letters, { y: 200, opacity: 0, rotateX: -90, stagger: 0.04, duration: 1.1, ease: "expo.out", delay: 2.6 });
+        gsap.from(letters, { y: 200, opacity: 0, rotateX: -90, stagger: 0.04, duration: 1.1, ease: "expo.out", delay: 2.9 });
       }
 
       // Final scatter setter
