@@ -124,13 +124,13 @@ export function AlbumExperience() {
         });
       });
 
-      // Phase 2 — at ~2.4s overlay slides up like a frame; cards scatter to final positions
-      const tl = gsap.timeline({ delay: 2.4 });
+      // Phase 2 — overlay slides up like a frame; cards scatter to final positions
+      const tl = gsap.timeline({ delay: 1.6 });
       tl.to(overlayRef.current, {
         yPercent: -100,
-        duration: 0.7,
+        duration: 0.6,
         ease: "expo.inOut",
-        onComplete: () => setLoading(false),
+        onComplete: () => { setLoading(false); scatterReady = true; },
       }, 0);
       cardsRef.current.forEach((card, i) => {
         if (!card) return;
@@ -139,9 +139,9 @@ export function AlbumExperience() {
           y: SCATTER[i].y * H(),
           rotation: SCATTER[i].rot,
           scale: 1,
-          duration: 0.85,
+          duration: 0.75,
           ease: "expo.out",
-        }, 0.15 + i * 0.04);
+        }, 0.1 + i * 0.035);
       });
 
       // Continuous floating animation (only while in hero)
@@ -201,6 +201,7 @@ export function AlbumExperience() {
         };
       };
 
+      let scatterReady = false;
       ScrollTrigger.create({
         trigger: showcaseRef.current!,
         start: "top top",
@@ -213,6 +214,7 @@ export function AlbumExperience() {
           ease: "power2.inOut",
         },
         onUpdate: (self) => {
+          if (!scatterReady) return;
           const total = N + 1;
           const p = self.progress * total;
           const stackP = Math.min(1, p);
@@ -305,7 +307,7 @@ export function AlbumExperience() {
           <div
             className="relative h-full rounded-full"
             style={{
-              animation: "paniniLoad 2.6s cubic-bezier(.4,0,.2,1) forwards",
+              animation: "paniniLoad 1.9s cubic-bezier(.4,0,.2,1) forwards",
               background:
                 "linear-gradient(90deg, #fbbf24 0%, #ef4444 40%, #3b82f6 75%, #10b981 100%)",
               boxShadow:
