@@ -102,6 +102,24 @@ export function AlbumExperience() {
         });
       });
 
+      // Continuous floating animation (only while in hero)
+      const floatTweens: gsap.core.Tween[] = [];
+      cardsRef.current.forEach((card, i) => {
+        if (!card) return;
+        const baseY = SCATTER[i].y * H();
+        const baseRot = SCATTER[i].rot;
+        const tween = gsap.to(card, {
+          y: baseY - (10 + (i % 3) * 6),
+          rotation: baseRot + (i % 2 === 0 ? 3 : -3),
+          duration: 2.6 + (i % 3) * 0.5,
+          ease: "sine.inOut",
+          yoyo: true,
+          repeat: -1,
+          delay: 1.4 + i * 0.12,
+        });
+        floatTweens.push(tween);
+      });
+
 
       // Mouse parallax (only when in hero)
       let inHero = true;
@@ -125,8 +143,8 @@ export function AlbumExperience() {
       ScrollTrigger.create({
         trigger: heroRef.current!,
         start: "bottom 80%",
-        onEnter: () => { inHero = false; },
-        onLeaveBack: () => { inHero = true; },
+        onEnter: () => { inHero = false; floatTweens.forEach(t => t.pause()); },
+        onLeaveBack: () => { inHero = true; floatTweens.forEach(t => t.resume()); },
       });
 
       // Pin showcase + drive stacking + cycling
