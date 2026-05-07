@@ -311,13 +311,37 @@ export function AlbumExperience() {
 
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.6, duration: 0.8 }} className="mt-10 flex justify-center sm:mt-12">
             <button
-              className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full px-10 py-4 font-condensed text-base tracking-[0.25em] text-white shadow-[0_18px_40px_-12px_rgba(220,38,38,0.6)] ring-1 ring-white/20 transition-transform duration-300 hover:scale-[1.04] hover:shadow-[0_24px_50px_-12px_rgba(220,38,38,0.75)] active:scale-100 sm:px-14 sm:py-5 sm:text-lg"
-              style={{ backgroundImage: `linear-gradient(135deg, ${RED} 0%, #b91c1c 50%, ${RED} 100%)`, backgroundSize: "200% 200%" }}
+              className="group relative inline-flex items-center gap-4 rounded-full p-1.5 pr-2 font-condensed text-base tracking-[0.28em] text-white transition-all duration-500 hover:gap-6 sm:text-lg"
+              style={{
+                backgroundImage: `linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%)`,
+                boxShadow: `0 20px 50px -15px rgba(220,38,38,0.55), inset 0 1px 0 rgba(255,255,255,0.12), 0 0 0 1px rgba(255,255,255,0.06)`,
+              }}
             >
-              <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
-              <span className="relative z-10">ABRIR PACOTINHO</span>
-              <span className="relative z-10 flex h-8 w-8 items-center justify-center rounded-full bg-white/15 ring-1 ring-white/30 transition-transform duration-300 group-hover:translate-x-1 group-hover:rotate-[-8deg]">
-                <ArrowRight className="h-4 w-4" strokeWidth={2.5} />
+              {/* Animated gradient ring */}
+              <span
+                className="pointer-events-none absolute -inset-px rounded-full opacity-70 blur-[2px] transition-opacity duration-500 group-hover:opacity-100"
+                style={{
+                  backgroundImage: `conic-gradient(from 0deg, ${RED}, #f59e0b, ${RED}, #b91c1c, ${RED})`,
+                  WebkitMask: "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
+                  WebkitMaskComposite: "xor",
+                  maskComposite: "exclude",
+                  padding: "1.5px",
+                  animation: "spin 6s linear infinite",
+                }}
+              />
+              {/* Red glow blob */}
+              <span
+                className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-32 w-32 -translate-x-1/2 -translate-y-1/2 rounded-full opacity-60 blur-2xl transition-opacity duration-500 group-hover:opacity-90"
+                style={{ backgroundColor: RED }}
+              />
+
+              <span className="relative z-10 pl-6 pr-2 sm:pl-8">ABRIR PACOTINHO</span>
+
+              <span
+                className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full text-white shadow-inner transition-transform duration-500 group-hover:rotate-[360deg] sm:h-14 sm:w-14"
+                style={{ backgroundImage: `linear-gradient(135deg, ${RED} 0%, #b91c1c 100%)`, boxShadow: "inset 0 1px 0 rgba(255,255,255,0.25)" }}
+              >
+                <ArrowRight className="h-5 w-5" strokeWidth={2.5} />
               </span>
             </button>
           </motion.div>
