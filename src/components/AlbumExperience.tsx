@@ -3,6 +3,7 @@ import { gsap } from "gsap";
 import Galaxy from "@/components/Galaxy";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "motion/react";
+import { ArrowRight } from "lucide-react";
 import bellingham from "@/assets/players/bellingham.png";
 import cr7 from "@/assets/players/cr7.png";
 import haaland from "@/assets/players/haaland.png";
