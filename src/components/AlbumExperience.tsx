@@ -88,6 +88,40 @@ export function AlbumExperience() {
       };
       setScatter();
 
+      // Entrance: cards fly in from below + spin into place
+      cardsRef.current.forEach((card, i) => {
+        if (!card) return;
+        gsap.from(card, {
+          y: `+=${H() * 0.9}`,
+          rotation: SCATTER[i].rot + (i % 2 === 0 ? -45 : 45),
+          scale: 0.6,
+          opacity: 0,
+          duration: 1.2,
+          ease: "expo.out",
+          delay: 0.4 + i * 0.08,
+        });
+      });
+
+      // Continuous floating + subtle wobble while in hero
+      const floats: gsap.core.Tween[] = [];
+      cardsRef.current.forEach((card, i) => {
+        if (!card) return;
+        floats.push(
+          gsap.to(card, {
+            yoyo: true,
+            repeat: -1,
+            duration: 2.4 + (i % 3) * 0.6,
+            ease: "sine.inOut",
+            delay: 1.4 + i * 0.1,
+            keyframes: {
+              "0%": {},
+              "50%": { yPercent: -4, rotation: `+=${i % 2 === 0 ? 2 : -2}` },
+              "100%": {},
+            },
+          })
+        );
+      });
+
       // Mouse parallax (only when in hero)
       let inHero = true;
       const onMove = (e: MouseEvent) => {
