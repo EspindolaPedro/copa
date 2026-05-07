@@ -1,6 +1,7 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import Galaxy from "@/components/Galaxy";
+import { CupTimeline } from "@/components/CupTimeline";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "motion/react";
 import bellingham from "@/assets/players/bellingham.png";
@@ -408,6 +409,8 @@ export function AlbumExperience() {
 
         <style>{`@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}`}</style>
       </section>
+
+      <CupTimeline />
     </>
   );
 }
