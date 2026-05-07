@@ -180,7 +180,7 @@ export function AlbumExperience() {
       // Pin showcase + drive stacking + cycling
       const stackTarget = (order: number) => {
         const baseX = W() * 0.06;
-        const baseY = H() * 0.5 - CARD_H / 2;
+        const baseY = H() * 0.5 - 310 / 2;
         return {
           x: baseX - order * 16,
           y: baseY + order * 12,
