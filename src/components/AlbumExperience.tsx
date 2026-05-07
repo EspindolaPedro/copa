@@ -619,15 +619,15 @@ function SiteFooter() {
 function FooterCol({ title, links }: { title: string; links: string[] }) {
   return (
     <div>
-      <div className="font-condensed text-xs tracking-[0.4em] text-white/45">{title.toUpperCase()}</div>
+      <div className="font-condensed text-xs tracking-[0.4em] text-neutral-500">{title.toUpperCase()}</div>
       <ul className="mt-4 space-y-3">
         {links.map((l) => (
           <li key={l}>
             <a
               href="#"
-              className="group inline-flex items-center gap-2 font-sans text-sm text-white/85 transition-colors hover:text-white"
+              className="group inline-flex items-center gap-2 font-sans text-sm text-neutral-700 transition-colors hover:text-neutral-950"
             >
-              <span className="size-1 rounded-full bg-white/30 transition-colors group-hover:bg-[var(--wc-red,#ef4444)]" />
+              <span className="size-1 rounded-full bg-neutral-300 transition-colors group-hover:bg-[var(--wc-red,#ef4444)]" />
               {l}
             </a>
           </li>
