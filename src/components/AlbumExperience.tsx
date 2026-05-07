@@ -9,6 +9,7 @@ import haaland from "@/assets/players/haaland.png";
 import mbappe from "@/assets/players/mbappe.png";
 import neymar from "@/assets/players/neymar.png";
 import pedri from "@/assets/players/pedri.png";
+import paniniLogo from "@/assets/panini-logo.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
