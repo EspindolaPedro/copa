@@ -143,8 +143,8 @@ export function AlbumExperience() {
       ScrollTrigger.create({
         trigger: heroRef.current!,
         start: "bottom 80%",
-        onEnter: () => { inHero = false; },
-        onLeaveBack: () => { inHero = true; },
+        onEnter: () => { inHero = false; floatTweens.forEach(t => t.pause()); },
+        onLeaveBack: () => { inHero = true; floatTweens.forEach(t => t.resume()); },
       });
 
       // Pin showcase + drive stacking + cycling
