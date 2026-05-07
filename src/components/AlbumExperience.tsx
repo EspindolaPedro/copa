@@ -557,7 +557,7 @@ export function AlbumExperience() {
 function SiteFooter() {
   const year = new Date().getFullYear();
   return (
-    <footer className="relative overflow-hidden bg-white text-neutral-900">
+    <footer className="relative z-40 overflow-hidden bg-white text-neutral-900">
       {/* Top stripe like a sticker pack tear */}
       <div
         className="h-2 w-full"
