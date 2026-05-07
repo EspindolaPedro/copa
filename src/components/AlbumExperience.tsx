@@ -225,13 +225,16 @@ export function AlbumExperience() {
           <div
             key={p.name}
             ref={(el) => { cardsRef.current[i] = el; }}
-            className="absolute left-0 top-0 h-[310px] w-[220px] overflow-hidden rounded-2xl shadow-2xl ring-1 ring-white/20"
-            style={{
-              background: "linear-gradient(160deg, oklch(1 0 0 / 0.18), oklch(1 0 0 / 0.04))",
-              backdropFilter: "blur(8px)",
-              willChange: "transform",
-            }}
+            className="absolute left-0 top-0 h-[310px] w-[220px]"
+            style={{ willChange: "transform" }}
           >
+            <div
+              className="card-float h-full w-full overflow-hidden rounded-2xl shadow-2xl ring-1 ring-white/20"
+              style={{
+                background: "linear-gradient(160deg, oklch(1 0 0 / 0.18), oklch(1 0 0 / 0.04))",
+                backdropFilter: "blur(8px)",
+              }}
+            >
             <div className="flex h-full flex-col">
               <div className="flex items-center justify-between px-4 pt-3 font-condensed text-[10px] tracking-[0.3em] text-white/85">
                 <span>FIFA 2026</span>
