@@ -394,35 +394,42 @@ export function AlbumExperience() {
   );
 }
 
-const WC_FLAGS = [
-  { c: "🇦🇷", n: "ARGENTINA" }, { c: "🇦🇺", n: "AUSTRÁLIA" }, { c: "🇦🇹", n: "ÁUSTRIA" },
-  { c: "🇧🇪", n: "BÉLGICA" }, { c: "🇧🇷", n: "BRASIL" }, { c: "🇨🇦", n: "CANADÁ" },
-  { c: "🇨🇴", n: "COLÔMBIA" }, { c: "🇰🇷", n: "COREIA DO SUL" }, { c: "🇨🇮", n: "COSTA DO MARFIM" },
-  { c: "🇭🇷", n: "CROÁCIA" }, { c: "🇩🇰", n: "DINAMARCA" }, { c: "🇪🇨", n: "EQUADOR" },
-  { c: "🇪🇬", n: "EGITO" }, { c: "🇪🇸", n: "ESPANHA" }, { c: "🇺🇸", n: "EUA" },
-  { c: "🇫🇷", n: "FRANÇA" }, { c: "🇬🇭", n: "GANA" }, { c: "🇳🇱", n: "HOLANDA" },
-  { c: "🇮🇷", n: "IRÃ" }, { c: "🇬🇧", n: "INGLATERRA" }, { c: "🇯🇵", n: "JAPÃO" },
-  { c: "🇯🇴", n: "JORDÂNIA" }, { c: "🇲🇦", n: "MARROCOS" }, { c: "🇲🇽", n: "MÉXICO" },
-  { c: "🇳🇿", n: "NOVA ZELÂNDIA" }, { c: "🇳🇴", n: "NORUEGA" }, { c: "🇵🇾", n: "PARAGUAI" },
-  { c: "🇵🇹", n: "PORTUGAL" }, { c: "🇶🇦", n: "CATAR" }, { c: "🇸🇳", n: "SENEGAL" },
-  { c: "🇷🇸", n: "SÉRVIA" }, { c: "🇨🇭", n: "SUÍÇA" }, { c: "🇹🇳", n: "TUNÍSIA" },
-  { c: "🇹🇷", n: "TURQUIA" }, { c: "🇺🇿", n: "UZBEQUISTÃO" }, { c: "🇺🇾", n: "URUGUAI" },
-  { c: "🇩🇿", n: "ARGÉLIA" }, { c: "🇩🇪", n: "ALEMANHA" }, { c: "🇮🇹", n: "ITÁLIA" },
-  { c: "🇨🇱", n: "CHILE" }, { c: "🇵🇪", n: "PERU" }, { c: "🇳🇬", n: "NIGÉRIA" },
-  { c: "🇨🇲", n: "CAMARÕES" }, { c: "🇸🇦", n: "ARÁBIA SAUDITA" }, { c: "🇵🇱", n: "POLÔNIA" },
-  { c: "🇺🇦", n: "UCRÂNIA" },
+const WC_FLAGS: { code: string; n: string }[] = [
+  { code: "ar", n: "ARGENTINA" }, { code: "au", n: "AUSTRÁLIA" }, { code: "at", n: "ÁUSTRIA" },
+  { code: "be", n: "BÉLGICA" }, { code: "br", n: "BRASIL" }, { code: "ca", n: "CANADÁ" },
+  { code: "co", n: "COLÔMBIA" }, { code: "kr", n: "COREIA DO SUL" }, { code: "ci", n: "COSTA DO MARFIM" },
+  { code: "hr", n: "CROÁCIA" }, { code: "dk", n: "DINAMARCA" }, { code: "ec", n: "EQUADOR" },
+  { code: "eg", n: "EGITO" }, { code: "es", n: "ESPANHA" }, { code: "us", n: "EUA" },
+  { code: "fr", n: "FRANÇA" }, { code: "gh", n: "GANA" }, { code: "nl", n: "HOLANDA" },
+  { code: "ir", n: "IRÃ" }, { code: "gb", n: "INGLATERRA" }, { code: "jp", n: "JAPÃO" },
+  { code: "jo", n: "JORDÂNIA" }, { code: "ma", n: "MARROCOS" }, { code: "mx", n: "MÉXICO" },
+  { code: "nz", n: "NOVA ZELÂNDIA" }, { code: "no", n: "NORUEGA" }, { code: "py", n: "PARAGUAI" },
+  { code: "pt", n: "PORTUGAL" }, { code: "qa", n: "CATAR" }, { code: "sn", n: "SENEGAL" },
+  { code: "rs", n: "SÉRVIA" }, { code: "ch", n: "SUÍÇA" }, { code: "tn", n: "TUNÍSIA" },
+  { code: "tr", n: "TURQUIA" }, { code: "uz", n: "UZBEQUISTÃO" }, { code: "uy", n: "URUGUAI" },
+  { code: "dz", n: "ARGÉLIA" }, { code: "de", n: "ALEMANHA" }, { code: "it", n: "ITÁLIA" },
+  { code: "cl", n: "CHILE" }, { code: "pe", n: "PERU" }, { code: "ng", n: "NIGÉRIA" },
+  { code: "cm", n: "CAMARÕES" }, { code: "sa", n: "ARÁBIA SAUDITA" }, { code: "pl", n: "POLÔNIA" },
+  { code: "ua", n: "UCRÂNIA" },
 ];
 
 function FlagsMarquee() {
   const loop = [...WC_FLAGS, ...WC_FLAGS];
   return (
-    <section className="relative w-full overflow-hidden border-y border-white/10 bg-neutral-950 py-8">
+    <section className="relative w-full overflow-hidden border-y border-neutral-200 bg-white py-8">
       <div className="flex whitespace-nowrap" style={{ animation: "flagscroll 90s linear infinite", width: "max-content" }}>
         {loop.map((f, i) => (
-          <div key={i} className="flex items-center gap-3 pr-12">
-            <span className="text-4xl leading-none">{f.c}</span>
-            <span className="font-condensed text-sm tracking-[0.35em] text-white/70">{f.n}</span>
-            <span className="pl-12 text-white/20">★</span>
+          <div key={i} className="flex items-center gap-4 pr-12">
+            <img
+              src={`https://flagcdn.com/w80/${f.code}.png`}
+              srcSet={`https://flagcdn.com/w160/${f.code}.png 2x`}
+              alt={f.n}
+              className="h-9 w-14 rounded-sm object-cover shadow-sm ring-1 ring-black/10"
+              loading="lazy"
+              draggable={false}
+            />
+            <span className="font-condensed text-sm tracking-[0.35em] text-neutral-800">{f.n}</span>
+            <span className="pl-8" style={{ color: RED }}>★</span>
           </div>
         ))}
       </div>
