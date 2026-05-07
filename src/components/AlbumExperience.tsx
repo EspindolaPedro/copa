@@ -3,6 +3,7 @@ import { gsap } from "gsap";
 import Galaxy from "@/components/Galaxy";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "motion/react";
+import { ArrowRight } from "lucide-react";
 import bellingham from "@/assets/players/bellingham.png";
 import cr7 from "@/assets/players/cr7.png";
 import haaland from "@/assets/players/haaland.png";
@@ -315,7 +316,9 @@ export function AlbumExperience() {
             >
               <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
               <span className="relative z-10">ABRIR PACOTINHO</span>
-              <span className="relative z-10 text-lg transition-transform duration-300 group-hover:translate-x-1">→</span>
+              <span className="relative z-10 flex h-8 w-8 items-center justify-center rounded-full bg-white/15 ring-1 ring-white/30 transition-transform duration-300 group-hover:translate-x-1 group-hover:rotate-[-8deg]">
+                <ArrowRight className="h-4 w-4" strokeWidth={2.5} />
+              </span>
             </button>
           </motion.div>
         </div>
