@@ -9,6 +9,7 @@ import haaland from "@/assets/players/haaland.png";
 import mbappe from "@/assets/players/mbappe.png";
 import neymar from "@/assets/players/neymar.png";
 import pedri from "@/assets/players/pedri.png";
+import paniniLogo from "@/assets/panini-logo.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -248,8 +249,26 @@ export function AlbumExperience() {
         ))}
       </div>
 
+      {/* STICKY NAV */}
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-neutral-900/10 bg-white/80 backdrop-blur-md">
+        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 md:px-10">
+          <a href="#" className="flex items-center">
+            <img src={paniniLogo} alt="Panini" className="h-8 w-auto" />
+          </a>
+          <nav className="hidden items-center gap-10 md:flex">
+            <a href="#" className="font-sans text-sm font-medium text-neutral-800 transition-colors hover:text-neutral-500">Figurinhas</a>
+            <a href="#" className="font-sans text-sm font-medium text-neutral-800 transition-colors hover:text-neutral-500">Seleções</a>
+            <a href="#" className="font-sans text-sm font-medium text-neutral-800 transition-colors hover:text-neutral-500">Trocas</a>
+            <a href="#" className="font-sans text-sm font-medium text-neutral-800 transition-colors hover:text-neutral-500">Loja</a>
+          </nav>
+          <button className="rounded-full px-5 py-2 font-sans text-sm font-semibold text-white shadow-md transition-transform hover:scale-105" style={{ backgroundColor: RED }}>
+            Coletar
+          </button>
+        </div>
+      </header>
+
       {/* HERO */}
-      <section ref={heroRef} className="relative min-h-screen w-full overflow-hidden" style={{ backgroundColor: "oklch(0.98 0.005 90)" }}>
+      <section ref={heroRef} className="relative min-h-screen w-full overflow-hidden pt-16" style={{ backgroundColor: "oklch(0.98 0.005 90)" }}>
         {/* Galaxy background — inverted to render on white */}
         <div className="absolute inset-0" style={{ filter: "invert(1) hue-rotate(180deg) opacity(0.45) brightness(1.4)" }}>
           <Galaxy
@@ -274,13 +293,6 @@ export function AlbumExperience() {
           style={{ background: "radial-gradient(ellipse at center, oklch(1 0 0 / 0.55) 0%, transparent 70%)" }}
         />
 
-        <motion.div initial={{ y: -40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.8 }} className="relative z-40 flex items-center justify-between px-8 py-6 md:px-16">
-          <div className="font-condensed text-2xl tracking-widest text-neutral-900">PANINI <span style={{ color: RED }}>★</span> ALBUM</div>
-          <div className="hidden gap-8 font-condensed text-sm tracking-[0.3em] text-neutral-700 md:flex">
-            <span>STICKERS</span><span>TEAMS</span><span>STORE</span>
-          </div>
-          <button className="rounded-full px-6 py-2 font-condensed tracking-widest text-white shadow-lg transition-transform hover:scale-105" style={{ backgroundColor: RED }}>COLETAR</button>
-        </motion.div>
 
         <div className="relative z-20 mx-auto flex min-h-[calc(100vh-100px)] max-w-7xl flex-col items-center justify-center px-6 text-center">
           <h1 ref={titleRef} className="font-display text-[clamp(4rem,15vw,12rem)] leading-[0.85] tracking-tighter text-neutral-900" style={{ perspective: "1000px" }}>
