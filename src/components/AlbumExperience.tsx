@@ -558,135 +558,202 @@ export function AlbumExperience() {
 
 function AlbumReveal() {
   const ref = useRef<HTMLDivElement>(null);
+  const imgWrapRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
+  const bgNumRef = useRef<HTMLDivElement>(null);
+  const stickersRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        imgRef.current,
-        { y: 120, rotate: -14, scale: 0.85, opacity: 0 },
-        {
-          y: 0, rotate: -6, scale: 1, opacity: 1,
-          duration: 1.2, ease: "expo.out",
-          scrollTrigger: { trigger: ref.current!, start: "top 75%" },
-        },
-      );
-      gsap.to(imgRef.current, {
-        y: -40,
-        ease: "none",
-        scrollTrigger: { trigger: ref.current!, start: "top bottom", end: "bottom top", scrub: true },
-      });
-      gsap.to(imgRef.current, {
-        rotate: -2,
-        duration: 4, ease: "sine.inOut", yoyo: true, repeat: -1,
-      });
       const letters = titleRef.current?.querySelectorAll(".al-letter");
       if (letters) {
         gsap.from(letters, {
-          y: 80, opacity: 0, rotateX: -80, stagger: 0.04, duration: 0.9, ease: "expo.out",
-          scrollTrigger: { trigger: ref.current!, start: "top 70%" },
+          y: 120, opacity: 0, rotateX: -90, stagger: 0.05, duration: 1, ease: "expo.out",
+          scrollTrigger: { trigger: ref.current!, start: "top 75%" },
         });
       }
+
+      gsap.fromTo(
+        imgRef.current,
+        { y: 160, rotate: -12, scale: 0.8, opacity: 0 },
+        {
+          y: 0, rotate: 0, scale: 1, opacity: 1,
+          duration: 1.4, ease: "expo.out",
+          scrollTrigger: { trigger: ref.current!, start: "top 70%" },
+        },
+      );
+
+      gsap.to(imgRef.current, {
+        y: "+=14", duration: 3.2, ease: "sine.inOut", yoyo: true, repeat: -1,
+      });
+
+      gsap.to(bgNumRef.current, {
+        yPercent: -25,
+        ease: "none",
+        scrollTrigger: { trigger: ref.current!, start: "top bottom", end: "bottom top", scrub: true },
+      });
+
+      const items = stickersRef.current?.querySelectorAll(".al-sticker");
+      if (items) {
+        gsap.from(items, {
+          y: 40, opacity: 0, scale: 0.7, rotate: () => gsap.utils.random(-30, 30),
+          stagger: 0.1, duration: 0.9, ease: "back.out(1.6)",
+          scrollTrigger: { trigger: ref.current!, start: "top 65%" },
+        });
+      }
+
+      const onMove = (e: MouseEvent) => {
+        const wrap = imgWrapRef.current;
+        if (!wrap) return;
+        const r = wrap.getBoundingClientRect();
+        const x = ((e.clientX - r.left) / r.width - 0.5) * 2;
+        const y = ((e.clientY - r.top) / r.height - 0.5) * 2;
+        gsap.to(imgRef.current, {
+          rotateY: x * 10, rotateX: -y * 10, transformPerspective: 900,
+          duration: 0.6, ease: "power2.out",
+        });
+      };
+      const onLeave = () => {
+        gsap.to(imgRef.current, { rotateY: 0, rotateX: 0, duration: 0.8, ease: "power3.out" });
+      };
+      const wrap = imgWrapRef.current;
+      wrap?.addEventListener("mousemove", onMove);
+      wrap?.addEventListener("mouseleave", onLeave);
+      return () => {
+        wrap?.removeEventListener("mousemove", onMove);
+        wrap?.removeEventListener("mouseleave", onLeave);
+      };
     }, ref);
     return () => ctx.revert();
   }, []);
 
-  const title = "O ÁLBUM OFICIAL";
+  const title = "O ÁLBUM";
   return (
-    <section ref={ref} className="relative z-30 overflow-hidden bg-neutral-950 py-24 md:py-32">
-      {/* Background grid */}
+    <section
+      ref={ref}
+      className="relative z-30 overflow-hidden py-28 md:py-40"
+      style={{ backgroundColor: "oklch(0.98 0.005 90)" }}
+    >
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.06]"
+        className="pointer-events-none absolute inset-0 opacity-[0.5]"
         style={{
-          backgroundImage:
-            "linear-gradient(oklch(1 0 0) 1px, transparent 1px), linear-gradient(90deg, oklch(1 0 0) 1px, transparent 1px)",
-          backgroundSize: "80px 80px",
+          backgroundImage: "radial-gradient(oklch(0 0 0 / 0.08) 1px, transparent 1px)",
+          backgroundSize: "22px 22px",
         }}
       />
-      {/* Color glows */}
-      <div className="pointer-events-none absolute -left-32 top-1/3 h-[420px] w-[420px] rounded-full" style={{ background: "radial-gradient(circle, #ef4444 0%, transparent 65%)", opacity: 0.35 }} />
-      <div className="pointer-events-none absolute -right-32 top-10 h-[420px] w-[420px] rounded-full" style={{ background: "radial-gradient(circle, #3b82f6 0%, transparent 65%)", opacity: 0.35 }} />
-      <div className="pointer-events-none absolute bottom-0 left-1/3 h-[360px] w-[360px] rounded-full" style={{ background: "radial-gradient(circle, #10b981 0%, transparent 65%)", opacity: 0.3 }} />
 
-      <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-6 md:grid-cols-2 md:gap-16 md:px-10">
-        {/* Album image */}
-        <div className="relative flex items-center justify-center">
-          {/* Giant outline number */}
-          <div
-            className="pointer-events-none absolute inset-0 flex items-center justify-center font-display text-[22rem] leading-none tracking-tighter md:text-[26rem]"
-            style={{ color: "transparent", WebkitTextStroke: "2px rgba(255,255,255,0.08)" }}
-          >
-            26
-          </div>
-          <img
-            ref={imgRef}
-            src={albumImg}
-            alt="Álbum oficial Copa 2026"
-            className="relative z-10 w-full max-w-[460px] drop-shadow-[0_40px_60px_rgba(0,0,0,0.6)]"
-            draggable={false}
-          />
-          {/* Floating sticker dots */}
-          <div className="pointer-events-none absolute -bottom-4 -left-4 flex gap-2">
-            {["#fbbf24", "#ef4444", "#3b82f6", "#10b981"].map((c, i) => (
-              <span
-                key={c}
-                className="size-3 rounded-full"
-                style={{
-                  backgroundColor: c,
-                  boxShadow: `0 0 18px ${c}`,
-                  animation: `albumPulse 2.4s ${i * 0.2}s ease-in-out infinite`,
-                }}
-              />
-            ))}
-          </div>
-        </div>
+      <div
+        ref={bgNumRef}
+        className="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2 select-none text-center font-display leading-none tracking-tighter"
+        style={{
+          fontSize: "clamp(18rem, 42vw, 44rem)",
+          color: "transparent",
+          WebkitTextStroke: "2px oklch(0 0 0 / 0.07)",
+        }}
+      >
+        26
+      </div>
 
-        {/* Text */}
-        <div className="text-white">
-          <div className="font-condensed text-xs tracking-[0.45em] text-white/60">
+      <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-16 px-6 md:grid-cols-12 md:gap-10 md:px-10">
+        <div className="md:col-span-5">
+          <div className="font-condensed text-xs tracking-[0.45em] text-neutral-500">
             EDIÇÃO OFICIAL · LIVRO ILUSTRADO
           </div>
           <h2
             ref={titleRef}
-            className="mt-4 font-display text-5xl leading-[0.9] tracking-tight md:text-7xl"
-            style={{ perspective: "800px" }}
+            className="mt-4 font-display text-[clamp(3.5rem,8vw,7rem)] leading-[0.85] tracking-tight text-neutral-900"
+            style={{ perspective: "1000px" }}
           >
             {title.split("").map((ch, i) => (
-              <span key={i} className={`al-letter inline-block ${ch === " " ? "w-[0.3em]" : ""}`} style={ch === "Á" || (i >= 2 && i <= 7) ? { color: RED } : undefined}>
+              <span
+                key={i}
+                className={`al-letter inline-block ${ch === " " ? "w-[0.3em]" : ""}`}
+                style={i >= 2 ? { color: RED } : undefined}
+              >
                 {ch === " " ? "\u00A0" : ch}
               </span>
             ))}
           </h2>
-          <p className="mt-6 max-w-md font-sans text-base leading-relaxed text-white/75">
-            Capa dura, 80 páginas, espaço para todas as 670 figurinhas e os
-            craques que vão decidir a Copa 2026. O álbum que vai virar lembrança.
+          <p className="mt-6 max-w-md font-sans text-base leading-relaxed text-neutral-600">
+            Capa dura, 80 páginas e espaço para 670 figurinhas. O álbum oficial
+            que vai guardar a Copa 2026 inteira.
           </p>
 
-          <div className="mt-8 grid grid-cols-3 gap-4">
+          <div className="mt-10 flex flex-wrap items-center gap-x-10 gap-y-6">
             {[
               { n: "670", l: "FIGURINHAS" },
               { n: "48", l: "SELEÇÕES" },
               { n: "80", l: "PÁGINAS" },
             ].map((s) => (
-              <div key={s.l} className="rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur">
-                <div className="font-display text-3xl text-white">{s.n}</div>
-                <div className="mt-1 font-condensed text-[10px] tracking-[0.3em] text-white/55">{s.l}</div>
+              <div key={s.l}>
+                <div className="font-display text-4xl leading-none text-neutral-900">{s.n}</div>
+                <div className="mt-1 font-condensed text-[10px] tracking-[0.35em] text-neutral-500">{s.l}</div>
               </div>
             ))}
           </div>
 
           <button
-            className="group mt-10 inline-flex items-center gap-3 rounded-full px-7 py-4 font-condensed text-sm font-bold tracking-[0.3em] text-white shadow-2xl transition-transform hover:scale-105"
-            style={{ backgroundColor: RED }}
+            className="group mt-10 inline-flex items-center gap-3 rounded-full px-7 py-4 font-condensed text-sm font-bold tracking-[0.3em] text-white shadow-xl transition-transform hover:scale-105"
+            style={{ backgroundColor: RED, boxShadow: "0 16px 40px -12px oklch(0.64 0.23 25 / 0.6)" }}
           >
             QUERO O MEU
             <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
           </button>
         </div>
-      </div>
 
-      <style>{`@keyframes albumPulse{0%,100%{transform:translateY(0);opacity:0.85}50%{transform:translateY(-6px);opacity:1}}`}</style>
+        <div className="md:col-span-7">
+          <div ref={imgWrapRef} className="relative mx-auto flex aspect-square max-w-[560px] items-center justify-center">
+            <div
+              className="pointer-events-none absolute bottom-[8%] left-1/2 h-[60px] w-[70%] -translate-x-1/2 rounded-[50%] blur-2xl"
+              style={{ background: "oklch(0 0 0 / 0.35)" }}
+            />
+            <div className="pointer-events-none absolute -left-6 top-10 size-24 rounded-full opacity-70 blur-3xl" style={{ background: "#3b82f6" }} />
+            <div className="pointer-events-none absolute -right-6 bottom-12 size-28 rounded-full opacity-70 blur-3xl" style={{ background: "#fbbf24" }} />
+
+            <img
+              ref={imgRef}
+              src={albumImg}
+              alt="Álbum oficial Copa 2026"
+              className="relative z-10 w-[88%] drop-shadow-[0_30px_50px_rgba(0,0,0,0.35)]"
+              draggable={false}
+              style={{ willChange: "transform" }}
+            />
+
+            <div ref={stickersRef} className="pointer-events-none absolute inset-0">
+              <div
+                className="al-sticker absolute left-[2%] top-[18%] rounded-md bg-white px-3 py-1.5 shadow-lg ring-1 ring-black/10"
+                style={{ transform: "rotate(-8deg)" }}
+              >
+                <div className="font-condensed text-[9px] tracking-[0.3em] text-neutral-500">FIFA 2026</div>
+                <div className="font-display text-sm text-neutral-900">★ RARA</div>
+              </div>
+              <div
+                className="al-sticker absolute right-[4%] top-[8%] flex size-12 items-center justify-center rounded-full text-white shadow-lg"
+                style={{ background: RED, transform: "rotate(10deg)" }}
+              >
+                <span className="font-display text-xl">10</span>
+              </div>
+              <div
+                className="al-sticker absolute right-[0%] bottom-[18%] rounded-md bg-white px-3 py-1.5 shadow-lg ring-1 ring-black/10"
+                style={{ transform: "rotate(7deg)" }}
+              >
+                <div className="font-condensed text-[9px] tracking-[0.3em] text-neutral-500">BRASIL</div>
+                <div className="font-display text-sm text-neutral-900">🇧🇷 NEYMAR</div>
+              </div>
+              <div
+                className="al-sticker absolute bottom-[6%] left-[10%] flex items-center gap-1 rounded-full bg-neutral-900 px-3 py-1.5 shadow-lg"
+                style={{ transform: "rotate(-5deg)" }}
+              >
+                {["#fbbf24", "#ef4444", "#3b82f6", "#10b981"].map((c) => (
+                  <span key={c} className="size-2 rounded-full" style={{ backgroundColor: c }} />
+                ))}
+                <span className="ml-1 font-condensed text-[10px] tracking-[0.25em] text-white">PANINI</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
