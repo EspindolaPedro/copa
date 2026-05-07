@@ -308,11 +308,22 @@ export function AlbumExperience() {
             Uma copa que vai entrar pra história. O álbum que vai contar tudo.
           </motion.p>
 
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.6, duration: 0.8 }} className="mt-8 flex w-full flex-col items-stretch justify-center gap-3 sm:mt-10 sm:w-auto sm:flex-row sm:items-center sm:gap-4">
-            <button className="group relative overflow-hidden rounded-full px-8 py-3.5 font-condensed text-base tracking-[0.2em] text-white shadow-lg sm:px-10 sm:py-4 sm:text-lg" style={{ backgroundColor: RED }}>
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.6, duration: 0.8 }} className="mt-10 flex justify-center">
+            <button
+              className="group relative inline-flex items-center gap-4 overflow-hidden rounded-full pl-7 pr-2 py-2 font-condensed text-base tracking-[0.25em] text-white shadow-[0_20px_50px_-12px_rgba(220,38,38,0.55)] ring-1 ring-white/20 transition-transform duration-300 hover:scale-[1.03] active:scale-[0.99] sm:text-lg"
+              style={{ background: `linear-gradient(135deg, ${RED} 0%, oklch(0.55 0.22 18) 100%)` }}
+            >
+              <span
+                className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 group-hover:translate-x-full"
+                aria-hidden
+              />
               <span className="relative z-10">ABRIR PACOTINHO</span>
+              <span className="relative z-10 flex h-11 w-11 items-center justify-center rounded-full bg-white text-neutral-900 transition-transform duration-300 group-hover:rotate-45 sm:h-12 sm:w-12">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M13 5l7 7-7 7" />
+                </svg>
+              </span>
             </button>
-            <button className="rounded-full border border-neutral-900/20 bg-white/60 px-8 py-3.5 font-condensed text-base tracking-[0.2em] text-neutral-900 backdrop-blur-md transition-colors hover:bg-white sm:px-10 sm:py-4 sm:text-lg">VER ÁLBUM COMPLETO</button>
           </motion.div>
         </div>
       </section>
