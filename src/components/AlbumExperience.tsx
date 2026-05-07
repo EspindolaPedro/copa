@@ -331,28 +331,28 @@ export function AlbumExperience() {
           {player.number}
         </div>
 
-        <div className="relative z-10 mx-auto grid h-full max-w-[1400px] grid-cols-1 gap-8 px-8 py-20 md:grid-cols-12 md:px-16">
-          {/* Left: caption + dots (cards rendered via fixed layer) */}
-          <div className="col-span-7 flex flex-col justify-center">
-            <div className="ml-[300px] max-w-[360px]">
-              <div key={"cap" + active} className="font-condensed text-sm tracking-[0.4em] text-white/70" style={{ animation: "fadeIn 0.5s ease" }}>
+        <div className="relative z-10 mx-auto grid h-full max-w-[1400px] grid-cols-1 gap-8 px-6 py-24 md:grid-cols-12 md:px-16 md:py-20">
+          {/* Left: caption + dots (cards rendered via fixed layer on md+) */}
+          <div className="col-span-12 flex flex-col justify-center md:col-span-7">
+            <div className="max-w-[360px] md:ml-[300px]">
+              <div key={"cap" + active} className="font-condensed text-xs tracking-[0.4em] text-white/70 sm:text-sm" style={{ animation: "fadeIn 0.5s ease" }}>
                 #{String(active + 1).padStart(2, "0")} / {String(players.length).padStart(2, "0")}
               </div>
-              <h3 key={"name" + active} className="mt-3 font-display text-6xl leading-none tracking-tight text-white" style={{ animation: "fadeIn 0.6s ease" }}>
+              <h3 key={"name" + active} className="mt-3 font-display text-4xl leading-none tracking-tight text-white sm:text-5xl md:text-6xl" style={{ animation: "fadeIn 0.6s ease" }}>
                 {player.name}
               </h3>
-              <p key={"bio" + active} className="mt-4 text-base leading-relaxed text-white/85" style={{ animation: "fadeIn 0.7s ease" }}>
+              <p key={"bio" + active} className="mt-4 text-sm leading-relaxed text-white/85 sm:text-base" style={{ animation: "fadeIn 0.7s ease" }}>
                 {player.bio}
               </p>
             </div>
 
-            <div className="ml-[300px] mt-12 flex items-center gap-3">
+            <div className="mt-8 flex items-center gap-2 md:ml-[300px] md:mt-12 md:gap-3">
               {players.map((_, i) => (
                 <div
                   key={i}
-                  className="h-2.5 rounded-full transition-all duration-500"
+                  className="h-2 rounded-full transition-all duration-500 md:h-2.5"
                   style={{
-                    width: i === active ? 64 : 28,
+                    width: i === active ? 48 : 20,
                     backgroundColor: i === active ? RED : "oklch(1 0 0 / 0.25)",
                   }}
                 />
