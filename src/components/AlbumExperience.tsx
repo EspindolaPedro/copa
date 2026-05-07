@@ -293,13 +293,6 @@ export function AlbumExperience() {
           style={{ background: "radial-gradient(ellipse at center, oklch(1 0 0 / 0.55) 0%, transparent 70%)" }}
         />
 
-        <motion.div initial={{ y: -40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.8 }} className="relative z-40 flex items-center justify-between px-8 py-6 md:px-16">
-          <div className="font-condensed text-2xl tracking-widest text-neutral-900">PANINI <span style={{ color: RED }}>★</span> ALBUM</div>
-          <div className="hidden gap-8 font-condensed text-sm tracking-[0.3em] text-neutral-700 md:flex">
-            <span>STICKERS</span><span>TEAMS</span><span>STORE</span>
-          </div>
-          <button className="rounded-full px-6 py-2 font-condensed tracking-widest text-white shadow-lg transition-transform hover:scale-105" style={{ backgroundColor: RED }}>COLETAR</button>
-        </motion.div>
 
         <div className="relative z-20 mx-auto flex min-h-[calc(100vh-100px)] max-w-7xl flex-col items-center justify-center px-6 text-center">
           <h1 ref={titleRef} className="font-display text-[clamp(4rem,15vw,12rem)] leading-[0.85] tracking-tighter text-neutral-900" style={{ perspective: "1000px" }}>
