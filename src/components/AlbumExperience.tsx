@@ -201,6 +201,7 @@ export function AlbumExperience() {
         };
       };
 
+      let scatterReady = false;
       ScrollTrigger.create({
         trigger: showcaseRef.current!,
         start: "top top",
@@ -213,6 +214,7 @@ export function AlbumExperience() {
           ease: "power2.inOut",
         },
         onUpdate: (self) => {
+          if (!scatterReady) return;
           const total = N + 1;
           const p = self.progress * total;
           const stackP = Math.min(1, p);
