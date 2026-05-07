@@ -283,13 +283,38 @@ export function AlbumExperience() {
         />
 
         <img src={paniniLogo} alt="Panini" className="relative z-10 h-10 w-auto sm:h-12" />
-        <div className="relative z-10 mt-10 h-1.5 w-[260px] overflow-hidden rounded-full bg-white/15 sm:w-[340px]">
+        <div
+          className="relative z-10 mt-10 h-2.5 w-[260px] overflow-hidden rounded-full sm:w-[360px]"
+          style={{
+            background: "rgba(0,0,0,0.28)",
+            boxShadow:
+              "inset 0 1px 2px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.08), 0 0 0 1px rgba(255,255,255,0.05)",
+          }}
+        >
           <div
-            className="h-full rounded-full bg-white"
-            style={{ animation: "paniniLoad 2.6s cubic-bezier(.4,0,.2,1) forwards" }}
-          />
+            className="relative h-full rounded-full"
+            style={{
+              animation: "paniniLoad 2.6s cubic-bezier(.4,0,.2,1) forwards",
+              background:
+                "linear-gradient(90deg, #fbbf24 0%, #ef4444 40%, #3b82f6 75%, #10b981 100%)",
+              boxShadow:
+                "0 0 12px rgba(255,255,255,0.55), 0 0 24px rgba(251,191,36,0.4), inset 0 1px 0 rgba(255,255,255,0.6)",
+            }}
+          >
+            <span
+              className="pointer-events-none absolute inset-0 rounded-full"
+              style={{
+                background:
+                  "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.55) 50%, transparent 100%)",
+                animation: "paniniShimmer 1.2s linear infinite",
+              }}
+            />
+          </div>
         </div>
-        <style>{`@keyframes paniniLoad{0%{width:0%}60%{width:75%}100%{width:100%}}`}</style>
+        <style>{`
+          @keyframes paniniLoad{0%{width:0%}60%{width:75%}100%{width:100%}}
+          @keyframes paniniShimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+        `}</style>
       </div>
 
       {/* FIXED CARDS LAYER */}
