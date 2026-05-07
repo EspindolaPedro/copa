@@ -220,7 +220,7 @@ export function AlbumExperience() {
   return (
     <>
       {/* FIXED CARDS LAYER */}
-      <div ref={cardsLayerRef} className="pointer-events-none fixed inset-0 z-30">
+      <div ref={cardsLayerRef} className="pointer-events-none fixed inset-0 z-30 hidden md:block">
         {players.map((p, i) => (
           <div
             key={p.name}
@@ -303,23 +303,16 @@ export function AlbumExperience() {
             ))}
           </h1>
 
-          <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.4, duration: 0.8 }} className="mt-8 max-w-2xl text-balance text-lg leading-relaxed text-neutral-700 md:text-xl">
+          <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.4, duration: 0.8 }} className="mt-6 max-w-2xl text-balance text-base leading-relaxed text-neutral-700 sm:mt-8 sm:text-lg md:text-xl">
             <span className="font-display text-neutral-900">670 figurinhas.</span> 48 seleções.
             Uma copa que vai entrar pra história. O álbum que vai contar tudo.
-            <span className="block mt-2 text-base text-neutral-500">Cole, troque com os amigos e reviva cada gol até a final no MetLife.</span>
           </motion.p>
 
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.6, duration: 0.8 }} className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <button className="group relative overflow-hidden rounded-full px-10 py-4 font-condensed text-lg tracking-[0.2em] text-white shadow-lg" style={{ backgroundColor: RED }}>
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.6, duration: 0.8 }} className="mt-8 flex w-full flex-col items-stretch justify-center gap-3 sm:mt-10 sm:w-auto sm:flex-row sm:items-center sm:gap-4">
+            <button className="group relative overflow-hidden rounded-full px-8 py-3.5 font-condensed text-base tracking-[0.2em] text-white shadow-lg sm:px-10 sm:py-4 sm:text-lg" style={{ backgroundColor: RED }}>
               <span className="relative z-10">ABRIR PACOTINHO</span>
             </button>
-            <button className="rounded-full border border-neutral-900/20 bg-white/60 px-10 py-4 font-condensed text-lg tracking-[0.2em] text-neutral-900 backdrop-blur-md transition-colors hover:bg-white">VER ÁLBUM COMPLETO</button>
-          </motion.div>
-
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2 }} className="mt-12 flex items-center gap-6 font-condensed text-xs tracking-[0.4em] text-neutral-500">
-            <span>★ ENTREGA EM 48H</span>
-            <span className="hidden md:inline">★ TROCA NA COMUNIDADE</span>
-            <span>★ EDIÇÃO LIMITADA</span>
+            <button className="rounded-full border border-neutral-900/20 bg-white/60 px-8 py-3.5 font-condensed text-base tracking-[0.2em] text-neutral-900 backdrop-blur-md transition-colors hover:bg-white sm:px-10 sm:py-4 sm:text-lg">VER ÁLBUM COMPLETO</button>
           </motion.div>
         </div>
       </section>
@@ -338,28 +331,28 @@ export function AlbumExperience() {
           {player.number}
         </div>
 
-        <div className="relative z-10 mx-auto grid h-full max-w-[1400px] grid-cols-1 gap-8 px-8 py-20 md:grid-cols-12 md:px-16">
-          {/* Left: caption + dots (cards rendered via fixed layer) */}
-          <div className="col-span-7 flex flex-col justify-center">
-            <div className="ml-[300px] max-w-[360px]">
-              <div key={"cap" + active} className="font-condensed text-sm tracking-[0.4em] text-white/70" style={{ animation: "fadeIn 0.5s ease" }}>
+        <div className="relative z-10 mx-auto grid h-full max-w-[1400px] grid-cols-1 gap-8 px-6 py-24 md:grid-cols-12 md:px-16 md:py-20">
+          {/* Left: caption + dots (cards rendered via fixed layer on md+) */}
+          <div className="col-span-12 flex flex-col justify-center md:col-span-7">
+            <div className="max-w-[360px] md:ml-[300px]">
+              <div key={"cap" + active} className="font-condensed text-xs tracking-[0.4em] text-white/70 sm:text-sm" style={{ animation: "fadeIn 0.5s ease" }}>
                 #{String(active + 1).padStart(2, "0")} / {String(players.length).padStart(2, "0")}
               </div>
-              <h3 key={"name" + active} className="mt-3 font-display text-6xl leading-none tracking-tight text-white" style={{ animation: "fadeIn 0.6s ease" }}>
+              <h3 key={"name" + active} className="mt-3 font-display text-4xl leading-none tracking-tight text-white sm:text-5xl md:text-6xl" style={{ animation: "fadeIn 0.6s ease" }}>
                 {player.name}
               </h3>
-              <p key={"bio" + active} className="mt-4 text-base leading-relaxed text-white/85" style={{ animation: "fadeIn 0.7s ease" }}>
+              <p key={"bio" + active} className="mt-4 text-sm leading-relaxed text-white/85 sm:text-base" style={{ animation: "fadeIn 0.7s ease" }}>
                 {player.bio}
               </p>
             </div>
 
-            <div className="ml-[300px] mt-12 flex items-center gap-3">
+            <div className="mt-8 flex items-center gap-2 md:ml-[300px] md:mt-12 md:gap-3">
               {players.map((_, i) => (
                 <div
                   key={i}
-                  className="h-2.5 rounded-full transition-all duration-500"
+                  className="h-2 rounded-full transition-all duration-500 md:h-2.5"
                   style={{
-                    width: i === active ? 64 : 28,
+                    width: i === active ? 48 : 20,
                     backgroundColor: i === active ? RED : "oklch(1 0 0 / 0.25)",
                   }}
                 />
@@ -368,12 +361,12 @@ export function AlbumExperience() {
           </div>
 
           {/* Right: history panel */}
-          <div className="col-span-5 flex flex-col justify-center">
-            <div key={"panel" + active} className="rounded-3xl border border-white/15 bg-black/30 p-8 backdrop-blur-md" style={{ animation: "fadeIn 0.6s ease" }}>
+          <div className="col-span-12 flex flex-col justify-center md:col-span-5">
+            <div key={"panel" + active} className="rounded-3xl border border-white/15 bg-black/30 p-5 backdrop-blur-md sm:p-8" style={{ animation: "fadeIn 0.6s ease" }}>
               <div className="font-condensed text-xs tracking-[0.4em] text-white/60">FICHA DO JOGADOR</div>
               <div className="mt-2 flex items-baseline gap-3">
-                <span className="font-display text-6xl text-white">{player.number}</span>
-                <span className="font-condensed text-xl tracking-[0.3em] text-white/80">{player.position}</span>
+                <span className="font-display text-5xl text-white sm:text-6xl">{player.number}</span>
+                <span className="font-condensed text-base tracking-[0.3em] text-white/80 sm:text-xl">{player.position}</span>
               </div>
 
               <div className="mt-6 space-y-2 border-t border-white/15 pt-6">
