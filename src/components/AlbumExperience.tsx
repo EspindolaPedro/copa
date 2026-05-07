@@ -283,9 +283,13 @@ export function AlbumExperience() {
         />
 
         <img src={paniniLogo} alt="Panini" className="relative z-10 h-10 w-auto sm:h-12" />
-        <div className="relative z-10 mt-10 font-sans text-lg text-white/95 sm:text-2xl">
-          Carregando a experiência<span className="inline-block animate-pulse">...</span>
+        <div className="relative z-10 mt-10 h-1.5 w-[260px] overflow-hidden rounded-full bg-white/15 sm:w-[340px]">
+          <div
+            className="h-full rounded-full bg-white"
+            style={{ animation: "paniniLoad 2.6s cubic-bezier(.4,0,.2,1) forwards" }}
+          />
         </div>
+        <style>{`@keyframes paniniLoad{0%{width:0%}60%{width:75%}100%{width:100%}}`}</style>
       </div>
 
       {/* FIXED CARDS LAYER */}
