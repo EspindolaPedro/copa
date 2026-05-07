@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { HeroAlbum } from "@/components/HeroAlbum";
-import { PlayerShowcase } from "@/components/PlayerShowcase";
+import { AlbumExperience } from "@/components/AlbumExperience";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -13,10 +12,5 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  return (
-    <>
-      <HeroAlbum />
-      <PlayerShowcase />
-    </>
-  );
+  return <AlbumExperience />;
 }
