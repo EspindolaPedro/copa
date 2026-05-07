@@ -113,11 +113,11 @@ export function AlbumExperience() {
         });
       });
 
-      // Phase 2 — at ~2.5s overlay slides up (frame), then cards scatter outward
-      const tl = gsap.timeline({ delay: 2.5 });
+      // Phase 2 — at ~2.2s overlay slides up (frame), then cards scatter outward
+      const tl = gsap.timeline({ delay: 2.1 });
       tl.to(overlayRef.current, {
         yPercent: -100,
-        duration: 0.9,
+        duration: 0.8,
         ease: "expo.inOut",
         onComplete: () => setLoading(false),
       });
@@ -128,8 +128,8 @@ export function AlbumExperience() {
           y: SCATTER[i].y * H(),
           rotation: SCATTER[i].rot,
           scale: 1,
-          duration: 1, ease: "expo.out",
-        }, 0.1 + i * 0.05);
+          duration: 0.9, ease: "expo.out",
+        }, 0.1 + i * 0.04);
       });
 
       // Continuous floating animation (only while in hero)
