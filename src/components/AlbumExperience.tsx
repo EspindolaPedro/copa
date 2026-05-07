@@ -539,7 +539,139 @@ export function AlbumExperience() {
 
         <style>{`@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}`}</style>
       </section>
+
+      <SiteFooter />
     </>
+  );
+}
+
+function SiteFooter() {
+  const year = new Date().getFullYear();
+  return (
+    <footer className="relative overflow-hidden bg-neutral-950 text-white">
+      {/* Top stripe like a sticker pack tear */}
+      <div
+        className="h-2 w-full"
+        style={{
+          background:
+            "repeating-linear-gradient(90deg, #fbbf24 0 28px, #ef4444 28px 56px, #3b82f6 56px 84px, #10b981 84px 112px)",
+        }}
+      />
+
+      {/* Subtle radial glow */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-40"
+        style={{
+          background:
+            "radial-gradient(ellipse at 20% 0%, oklch(0.45 0.18 25 / 0.35), transparent 55%), radial-gradient(ellipse at 80% 100%, oklch(0.45 0.18 245 / 0.35), transparent 55%)",
+        }}
+      />
+
+      <div className="relative mx-auto max-w-7xl px-6 py-16 md:px-10 md:py-20">
+        {/* CTA */}
+        <div className="flex flex-col items-start justify-between gap-8 border-b border-white/10 pb-12 md:flex-row md:items-end">
+          <div>
+            <div className="font-condensed text-xs tracking-[0.45em] text-white/55">
+              EDIÇÃO OFICIAL · COPA 2026
+            </div>
+            <h2 className="mt-3 font-display text-5xl leading-[0.9] tracking-tight md:text-7xl">
+              COMECE A SUA <span style={{ color: RED }}>COLEÇÃO</span>
+            </h2>
+            <p className="mt-4 max-w-md font-sans text-sm text-white/65 md:text-base">
+              Álbuns, envelopes e figurinhas exclusivas dos craques que vão decidir o mundial.
+            </p>
+          </div>
+          <button
+            className="group inline-flex items-center gap-3 rounded-full px-7 py-4 font-condensed text-sm font-bold tracking-[0.3em] text-white shadow-2xl transition-transform hover:scale-105"
+            style={{ backgroundColor: RED }}
+          >
+            COMPRAR AGORA
+            <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+          </button>
+        </div>
+
+        {/* Columns */}
+        <div className="grid gap-12 py-12 md:grid-cols-4 md:gap-8">
+          <div className="md:col-span-1">
+            <img src={paniniLogo} alt="Panini" className="h-9 w-auto" />
+            <p className="mt-5 font-sans text-sm leading-relaxed text-white/60">
+              A casa oficial das figurinhas da Copa desde 1970.
+            </p>
+            <div className="mt-6 flex items-center gap-2">
+              {["#fbbf24", "#ef4444", "#3b82f6", "#10b981"].map((c) => (
+                <span
+                  key={c}
+                  className="size-2.5 rounded-full"
+                  style={{ backgroundColor: c, boxShadow: `0 0 10px ${c}80` }}
+                />
+              ))}
+            </div>
+          </div>
+
+          <FooterCol
+            title="Coleção"
+            links={["Álbum Oficial", "Envelopes", "Figurinhas Especiais", "Capa Dura"]}
+          />
+          <FooterCol
+            title="Comunidade"
+            links={["Trocas", "Ranking", "Eventos", "Discord"]}
+          />
+          <FooterCol
+            title="Suporte"
+            links={["Central de Ajuda", "Autenticidade", "Contato", "Termos"]}
+          />
+        </div>
+
+        {/* Big watermark word */}
+        <div className="relative -mb-6 mt-4 select-none overflow-hidden">
+          <div
+            className="font-display text-[clamp(5rem,18vw,16rem)] leading-[0.85] tracking-tighter"
+            style={{
+              background:
+                "linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 100%)",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            }}
+          >
+            PANINI 2026
+          </div>
+        </div>
+
+        {/* Bottom bar */}
+        <div className="relative flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-8 md:flex-row md:items-center">
+          <div className="font-condensed text-xs tracking-[0.3em] text-white/45">
+            © {year} PANINI · TODOS OS DIREITOS RESERVADOS
+          </div>
+          <div className="flex items-center gap-6 font-condensed text-xs tracking-[0.3em] text-white/55">
+            <a href="#" className="transition-colors hover:text-white">PRIVACIDADE</a>
+            <a href="#" className="transition-colors hover:text-white">COOKIES</a>
+            <a href="#" className="transition-colors hover:text-white">FIFA.COM</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+function FooterCol({ title, links }: { title: string; links: string[] }) {
+  return (
+    <div>
+      <div className="font-condensed text-xs tracking-[0.4em] text-white/45">{title.toUpperCase()}</div>
+      <ul className="mt-4 space-y-3">
+        {links.map((l) => (
+          <li key={l}>
+            <a
+              href="#"
+              className="group inline-flex items-center gap-2 font-sans text-sm text-white/85 transition-colors hover:text-white"
+            >
+              <span className="size-1 rounded-full bg-white/30 transition-colors group-hover:bg-[var(--wc-red,#ef4444)]" />
+              {l}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
