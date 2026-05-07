@@ -11,6 +11,7 @@ import mbappe from "@/assets/players/mbappe.png";
 import neymar from "@/assets/players/neymar.png";
 import pedri from "@/assets/players/pedri.png";
 import paniniLogo from "@/assets/panini-logo.png";
+import paniniPattern from "@/assets/panini-pattern.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
