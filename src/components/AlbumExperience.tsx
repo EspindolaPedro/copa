@@ -388,7 +388,46 @@ export function AlbumExperience() {
 
         <style>{`@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}`}</style>
       </section>
+
+      <FlagsMarquee />
     </>
+  );
+}
+
+const WC_FLAGS = [
+  { c: "🇦🇷", n: "ARGENTINA" }, { c: "🇦🇺", n: "AUSTRÁLIA" }, { c: "🇦🇹", n: "ÁUSTRIA" },
+  { c: "🇧🇪", n: "BÉLGICA" }, { c: "🇧🇷", n: "BRASIL" }, { c: "🇨🇦", n: "CANADÁ" },
+  { c: "🇨🇴", n: "COLÔMBIA" }, { c: "🇰🇷", n: "COREIA DO SUL" }, { c: "🇨🇮", n: "COSTA DO MARFIM" },
+  { c: "🇭🇷", n: "CROÁCIA" }, { c: "🇩🇰", n: "DINAMARCA" }, { c: "🇪🇨", n: "EQUADOR" },
+  { c: "🇪🇬", n: "EGITO" }, { c: "🇪🇸", n: "ESPANHA" }, { c: "🇺🇸", n: "EUA" },
+  { c: "🇫🇷", n: "FRANÇA" }, { c: "🇬🇭", n: "GANA" }, { c: "🇳🇱", n: "HOLANDA" },
+  { c: "🇮🇷", n: "IRÃ" }, { c: "🇬🇧", n: "INGLATERRA" }, { c: "🇯🇵", n: "JAPÃO" },
+  { c: "🇯🇴", n: "JORDÂNIA" }, { c: "🇲🇦", n: "MARROCOS" }, { c: "🇲🇽", n: "MÉXICO" },
+  { c: "🇳🇿", n: "NOVA ZELÂNDIA" }, { c: "🇳🇴", n: "NORUEGA" }, { c: "🇵🇾", n: "PARAGUAI" },
+  { c: "🇵🇹", n: "PORTUGAL" }, { c: "🇶🇦", n: "CATAR" }, { c: "🇸🇳", n: "SENEGAL" },
+  { c: "🇷🇸", n: "SÉRVIA" }, { c: "🇨🇭", n: "SUÍÇA" }, { c: "🇹🇳", n: "TUNÍSIA" },
+  { c: "🇹🇷", n: "TURQUIA" }, { c: "🇺🇿", n: "UZBEQUISTÃO" }, { c: "🇺🇾", n: "URUGUAI" },
+  { c: "🇩🇿", n: "ARGÉLIA" }, { c: "🇩🇪", n: "ALEMANHA" }, { c: "🇮🇹", n: "ITÁLIA" },
+  { c: "🇨🇱", n: "CHILE" }, { c: "🇵🇪", n: "PERU" }, { c: "🇳🇬", n: "NIGÉRIA" },
+  { c: "🇨🇲", n: "CAMARÕES" }, { c: "🇸🇦", n: "ARÁBIA SAUDITA" }, { c: "🇵🇱", n: "POLÔNIA" },
+  { c: "🇺🇦", n: "UCRÂNIA" },
+];
+
+function FlagsMarquee() {
+  const loop = [...WC_FLAGS, ...WC_FLAGS];
+  return (
+    <section className="relative w-full overflow-hidden border-y border-white/10 bg-neutral-950 py-8">
+      <div className="flex whitespace-nowrap" style={{ animation: "flagscroll 90s linear infinite", width: "max-content" }}>
+        {loop.map((f, i) => (
+          <div key={i} className="flex items-center gap-3 pr-12">
+            <span className="text-4xl leading-none">{f.c}</span>
+            <span className="font-condensed text-sm tracking-[0.35em] text-white/70">{f.n}</span>
+            <span className="pl-12 text-white/20">★</span>
+          </div>
+        ))}
+      </div>
+      <style>{`@keyframes flagscroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}`}</style>
+    </section>
   );
 }
 
