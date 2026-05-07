@@ -88,6 +88,21 @@ export function AlbumExperience() {
       };
       setScatter();
 
+      // Entrance: cards fly in from below + spin into place
+      cardsRef.current.forEach((card, i) => {
+        if (!card) return;
+        gsap.from(card, {
+          y: `+=${H() * 0.9}`,
+          rotation: SCATTER[i].rot + (i % 2 === 0 ? -45 : 45),
+          scale: 0.6,
+          opacity: 0,
+          duration: 1.2,
+          ease: "expo.out",
+          delay: 0.4 + i * 0.08,
+        });
+      });
+
+
       // Mouse parallax (only when in hero)
       let inHero = true;
       const onMove = (e: MouseEvent) => {
