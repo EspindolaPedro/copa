@@ -223,8 +223,25 @@ export function HeroAlbum() {
         >
           {Array.from({ length: 2 }).map((_, k) => (
             <div key={k} className="flex shrink-0 gap-12 px-6">
-              {["BRASIL", "ARGENTINA", "FRANÇA", "ALEMANHA", "ESPANHA", "INGLATERRA", "PORTUGAL", "HOLANDA", "CROÁCIA", "NORUEGA", "MÉXICO", "CANADÁ", "USA"].map((c) => (
-                <span key={c}>★ {c}</span>
+              {[
+                { f: "🇧🇷", n: "BRASIL" },
+                { f: "🇦🇷", n: "ARGENTINA" },
+                { f: "🇫🇷", n: "FRANÇA" },
+                { f: "🇩🇪", n: "ALEMANHA" },
+                { f: "🇪🇸", n: "ESPANHA" },
+                { f: "🇬🇧", n: "INGLATERRA" },
+                { f: "🇵🇹", n: "PORTUGAL" },
+                { f: "🇳🇱", n: "HOLANDA" },
+                { f: "🇭🇷", n: "CROÁCIA" },
+                { f: "🇳🇴", n: "NORUEGA" },
+                { f: "🇲🇽", n: "MÉXICO" },
+                { f: "🇨🇦", n: "CANADÁ" },
+                { f: "🇺🇸", n: "USA" },
+              ].map((c) => (
+                <span key={c.n} className="inline-flex items-center gap-2">
+                  <span className="text-lg leading-none tracking-normal">{c.f}</span>
+                  {c.n}
+                </span>
               ))}
             </div>
           ))}
