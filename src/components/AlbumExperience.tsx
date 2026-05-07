@@ -303,23 +303,16 @@ export function AlbumExperience() {
             ))}
           </h1>
 
-          <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.4, duration: 0.8 }} className="mt-8 max-w-2xl text-balance text-lg leading-relaxed text-neutral-700 md:text-xl">
+          <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.4, duration: 0.8 }} className="mt-6 max-w-2xl text-balance text-base leading-relaxed text-neutral-700 sm:mt-8 sm:text-lg md:text-xl">
             <span className="font-display text-neutral-900">670 figurinhas.</span> 48 seleções.
             Uma copa que vai entrar pra história. O álbum que vai contar tudo.
-            <span className="block mt-2 text-base text-neutral-500">Cole, troque com os amigos e reviva cada gol até a final no MetLife.</span>
           </motion.p>
 
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.6, duration: 0.8 }} className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <button className="group relative overflow-hidden rounded-full px-10 py-4 font-condensed text-lg tracking-[0.2em] text-white shadow-lg" style={{ backgroundColor: RED }}>
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.6, duration: 0.8 }} className="mt-8 flex w-full flex-col items-stretch justify-center gap-3 sm:mt-10 sm:w-auto sm:flex-row sm:items-center sm:gap-4">
+            <button className="group relative overflow-hidden rounded-full px-8 py-3.5 font-condensed text-base tracking-[0.2em] text-white shadow-lg sm:px-10 sm:py-4 sm:text-lg" style={{ backgroundColor: RED }}>
               <span className="relative z-10">ABRIR PACOTINHO</span>
             </button>
-            <button className="rounded-full border border-neutral-900/20 bg-white/60 px-10 py-4 font-condensed text-lg tracking-[0.2em] text-neutral-900 backdrop-blur-md transition-colors hover:bg-white">VER ÁLBUM COMPLETO</button>
-          </motion.div>
-
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2 }} className="mt-12 flex items-center gap-6 font-condensed text-xs tracking-[0.4em] text-neutral-500">
-            <span>★ ENTREGA EM 48H</span>
-            <span className="hidden md:inline">★ TROCA NA COMUNIDADE</span>
-            <span>★ EDIÇÃO LIMITADA</span>
+            <button className="rounded-full border border-neutral-900/20 bg-white/60 px-8 py-3.5 font-condensed text-base tracking-[0.2em] text-neutral-900 backdrop-blur-md transition-colors hover:bg-white sm:px-10 sm:py-4 sm:text-lg">VER ÁLBUM COMPLETO</button>
           </motion.div>
         </div>
       </section>
