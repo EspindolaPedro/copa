@@ -218,7 +218,7 @@ export function AlbumExperience() {
       {/* HERO */}
       <section ref={heroRef} className="relative min-h-screen w-full overflow-hidden" style={{ backgroundColor: "oklch(0.98 0.005 90)" }}>
         {/* Galaxy background — inverted to render on white */}
-        <div className="absolute inset-0" style={{ filter: "invert(1) hue-rotate(180deg)" }}>
+        <div className="absolute inset-0" style={{ filter: "invert(1) hue-rotate(180deg) opacity(0.45) brightness(1.4)" }}>
           <Galaxy
             mouseInteraction={false}
             mouseRepulsion={false}
