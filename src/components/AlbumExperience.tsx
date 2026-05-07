@@ -308,11 +308,15 @@ export function AlbumExperience() {
             Uma copa que vai entrar pra história. O álbum que vai contar tudo.
           </motion.p>
 
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.6, duration: 0.8 }} className="mt-8 flex w-full flex-col items-stretch justify-center gap-3 sm:mt-10 sm:w-auto sm:flex-row sm:items-center sm:gap-4">
-            <button className="group relative overflow-hidden rounded-full px-8 py-3.5 font-condensed text-base tracking-[0.2em] text-white shadow-lg sm:px-10 sm:py-4 sm:text-lg" style={{ backgroundColor: RED }}>
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.6, duration: 0.8 }} className="mt-10 flex justify-center sm:mt-12">
+            <button
+              className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full px-10 py-4 font-condensed text-base tracking-[0.25em] text-white shadow-[0_18px_40px_-12px_rgba(220,38,38,0.6)] ring-1 ring-white/20 transition-transform duration-300 hover:scale-[1.04] hover:shadow-[0_24px_50px_-12px_rgba(220,38,38,0.75)] active:scale-100 sm:px-14 sm:py-5 sm:text-lg"
+              style={{ backgroundImage: `linear-gradient(135deg, ${RED} 0%, #b91c1c 50%, ${RED} 100%)`, backgroundSize: "200% 200%" }}
+            >
+              <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
               <span className="relative z-10">ABRIR PACOTINHO</span>
+              <span className="relative z-10 text-lg transition-transform duration-300 group-hover:translate-x-1">→</span>
             </button>
-            <button className="rounded-full border border-neutral-900/20 bg-white/60 px-8 py-3.5 font-condensed text-base tracking-[0.2em] text-neutral-900 backdrop-blur-md transition-colors hover:bg-white sm:px-10 sm:py-4 sm:text-lg">VER ÁLBUM COMPLETO</button>
           </motion.div>
         </div>
       </section>
