@@ -220,12 +220,12 @@ export function AlbumExperience() {
   return (
     <>
       {/* FIXED CARDS LAYER */}
-      <div ref={cardsLayerRef} className="pointer-events-none fixed inset-0 z-30">
+      <div ref={cardsLayerRef} className="pointer-events-none fixed inset-0 z-30 hidden md:block">
         {players.map((p, i) => (
           <div
             key={p.name}
             ref={(el) => { cardsRef.current[i] = el; }}
-            className="absolute left-0 top-0 h-[180px] w-[128px] overflow-hidden rounded-xl shadow-2xl ring-1 ring-white/20 sm:h-[240px] sm:w-[170px] md:h-[310px] md:w-[220px]"
+            className="absolute left-0 top-0 h-[310px] w-[220px] overflow-hidden rounded-2xl shadow-2xl ring-1 ring-white/20"
             style={{
               background: "linear-gradient(160deg, oklch(1 0 0 / 0.18), oklch(1 0 0 / 0.04))",
               backdropFilter: "blur(8px)",
@@ -308,22 +308,11 @@ export function AlbumExperience() {
             Uma copa que vai entrar pra história. O álbum que vai contar tudo.
           </motion.p>
 
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.6, duration: 0.8 }} className="mt-10 flex justify-center">
-            <button
-              className="group relative inline-flex items-center gap-4 overflow-hidden rounded-full pl-7 pr-2 py-2 font-condensed text-base tracking-[0.25em] text-white shadow-[0_20px_50px_-12px_rgba(220,38,38,0.55)] ring-1 ring-white/20 transition-transform duration-300 hover:scale-[1.03] active:scale-[0.99] sm:text-lg"
-              style={{ background: `linear-gradient(135deg, ${RED} 0%, oklch(0.55 0.22 18) 100%)` }}
-            >
-              <span
-                className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 group-hover:translate-x-full"
-                aria-hidden
-              />
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.6, duration: 0.8 }} className="mt-8 flex w-full flex-col items-stretch justify-center gap-3 sm:mt-10 sm:w-auto sm:flex-row sm:items-center sm:gap-4">
+            <button className="group relative overflow-hidden rounded-full px-8 py-3.5 font-condensed text-base tracking-[0.2em] text-white shadow-lg sm:px-10 sm:py-4 sm:text-lg" style={{ backgroundColor: RED }}>
               <span className="relative z-10">ABRIR PACOTINHO</span>
-              <span className="relative z-10 flex h-11 w-11 items-center justify-center rounded-full bg-white text-neutral-900 transition-transform duration-300 group-hover:rotate-45 sm:h-12 sm:w-12">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M5 12h14M13 5l7 7-7 7" />
-                </svg>
-              </span>
             </button>
+            <button className="rounded-full border border-neutral-900/20 bg-white/60 px-8 py-3.5 font-condensed text-base tracking-[0.2em] text-neutral-900 backdrop-blur-md transition-colors hover:bg-white sm:px-10 sm:py-4 sm:text-lg">VER ÁLBUM COMPLETO</button>
           </motion.div>
         </div>
       </section>
