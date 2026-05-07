@@ -556,6 +556,141 @@ export function AlbumExperience() {
   );
 }
 
+function AlbumReveal() {
+  const ref = useRef<HTMLDivElement>(null);
+  const imgRef = useRef<HTMLImageElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        imgRef.current,
+        { y: 120, rotate: -14, scale: 0.85, opacity: 0 },
+        {
+          y: 0, rotate: -6, scale: 1, opacity: 1,
+          duration: 1.2, ease: "expo.out",
+          scrollTrigger: { trigger: ref.current!, start: "top 75%" },
+        },
+      );
+      gsap.to(imgRef.current, {
+        y: -40,
+        ease: "none",
+        scrollTrigger: { trigger: ref.current!, start: "top bottom", end: "bottom top", scrub: true },
+      });
+      gsap.to(imgRef.current, {
+        rotate: -2,
+        duration: 4, ease: "sine.inOut", yoyo: true, repeat: -1,
+      });
+      const letters = titleRef.current?.querySelectorAll(".al-letter");
+      if (letters) {
+        gsap.from(letters, {
+          y: 80, opacity: 0, rotateX: -80, stagger: 0.04, duration: 0.9, ease: "expo.out",
+          scrollTrigger: { trigger: ref.current!, start: "top 70%" },
+        });
+      }
+    }, ref);
+    return () => ctx.revert();
+  }, []);
+
+  const title = "O ÁLBUM OFICIAL";
+  return (
+    <section ref={ref} className="relative z-30 overflow-hidden bg-neutral-950 py-24 md:py-32">
+      {/* Background grid */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.06]"
+        style={{
+          backgroundImage:
+            "linear-gradient(oklch(1 0 0) 1px, transparent 1px), linear-gradient(90deg, oklch(1 0 0) 1px, transparent 1px)",
+          backgroundSize: "80px 80px",
+        }}
+      />
+      {/* Color glows */}
+      <div className="pointer-events-none absolute -left-32 top-1/3 h-[420px] w-[420px] rounded-full" style={{ background: "radial-gradient(circle, #ef4444 0%, transparent 65%)", opacity: 0.35 }} />
+      <div className="pointer-events-none absolute -right-32 top-10 h-[420px] w-[420px] rounded-full" style={{ background: "radial-gradient(circle, #3b82f6 0%, transparent 65%)", opacity: 0.35 }} />
+      <div className="pointer-events-none absolute bottom-0 left-1/3 h-[360px] w-[360px] rounded-full" style={{ background: "radial-gradient(circle, #10b981 0%, transparent 65%)", opacity: 0.3 }} />
+
+      <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-6 md:grid-cols-2 md:gap-16 md:px-10">
+        {/* Album image */}
+        <div className="relative flex items-center justify-center">
+          {/* Giant outline number */}
+          <div
+            className="pointer-events-none absolute inset-0 flex items-center justify-center font-display text-[22rem] leading-none tracking-tighter md:text-[26rem]"
+            style={{ color: "transparent", WebkitTextStroke: "2px rgba(255,255,255,0.08)" }}
+          >
+            26
+          </div>
+          <img
+            ref={imgRef}
+            src={albumImg}
+            alt="Álbum oficial Copa 2026"
+            className="relative z-10 w-full max-w-[460px] drop-shadow-[0_40px_60px_rgba(0,0,0,0.6)]"
+            draggable={false}
+          />
+          {/* Floating sticker dots */}
+          <div className="pointer-events-none absolute -bottom-4 -left-4 flex gap-2">
+            {["#fbbf24", "#ef4444", "#3b82f6", "#10b981"].map((c, i) => (
+              <span
+                key={c}
+                className="size-3 rounded-full"
+                style={{
+                  backgroundColor: c,
+                  boxShadow: `0 0 18px ${c}`,
+                  animation: `albumPulse 2.4s ${i * 0.2}s ease-in-out infinite`,
+                }}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Text */}
+        <div className="text-white">
+          <div className="font-condensed text-xs tracking-[0.45em] text-white/60">
+            EDIÇÃO OFICIAL · LIVRO ILUSTRADO
+          </div>
+          <h2
+            ref={titleRef}
+            className="mt-4 font-display text-5xl leading-[0.9] tracking-tight md:text-7xl"
+            style={{ perspective: "800px" }}
+          >
+            {title.split("").map((ch, i) => (
+              <span key={i} className={`al-letter inline-block ${ch === " " ? "w-[0.3em]" : ""}`} style={ch === "Á" || (i >= 2 && i <= 7) ? { color: RED } : undefined}>
+                {ch === " " ? "\u00A0" : ch}
+              </span>
+            ))}
+          </h2>
+          <p className="mt-6 max-w-md font-sans text-base leading-relaxed text-white/75">
+            Capa dura, 80 páginas, espaço para todas as 670 figurinhas e os
+            craques que vão decidir a Copa 2026. O álbum que vai virar lembrança.
+          </p>
+
+          <div className="mt-8 grid grid-cols-3 gap-4">
+            {[
+              { n: "670", l: "FIGURINHAS" },
+              { n: "48", l: "SELEÇÕES" },
+              { n: "80", l: "PÁGINAS" },
+            ].map((s) => (
+              <div key={s.l} className="rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur">
+                <div className="font-display text-3xl text-white">{s.n}</div>
+                <div className="mt-1 font-condensed text-[10px] tracking-[0.3em] text-white/55">{s.l}</div>
+              </div>
+            ))}
+          </div>
+
+          <button
+            className="group mt-10 inline-flex items-center gap-3 rounded-full px-7 py-4 font-condensed text-sm font-bold tracking-[0.3em] text-white shadow-2xl transition-transform hover:scale-105"
+            style={{ backgroundColor: RED }}
+          >
+            QUERO O MEU
+            <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+          </button>
+        </div>
+      </div>
+
+      <style>{`@keyframes albumPulse{0%,100%{transform:translateY(0);opacity:0.85}50%{transform:translateY(-6px);opacity:1}}`}</style>
+    </section>
+  );
+}
+
 function SiteFooter() {
   const year = new Date().getFullYear();
   return (
