@@ -249,7 +249,7 @@ export function AlbumExperience() {
   return (
     <>
       {/* FIXED CARDS LAYER */}
-      <div ref={cardsLayerRef} className="pointer-events-none fixed inset-0 z-30">
+      <div ref={cardsLayerRef} className={`pointer-events-none fixed inset-0 ${loading ? "z-[60]" : "z-30"}`}>
         {players.map((p, i) => (
           <div
             key={p.name}
