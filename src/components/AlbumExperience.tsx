@@ -11,6 +11,7 @@ import mbappe from "@/assets/players/mbappe.png";
 import neymar from "@/assets/players/neymar.png";
 import pedri from "@/assets/players/pedri.png";
 import paniniLogo from "@/assets/panini-logo.png";
+import paniniPattern from "@/assets/panini-pattern.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -260,35 +261,24 @@ export function AlbumExperience() {
         }}
         aria-hidden={!loading}
       >
-        {/* Decorative side strips (colorful confetti vibe) */}
+        {/* Decorative side patterns (Panini confetti) */}
         <div
-          className="pointer-events-none absolute inset-y-0 left-0 w-[8%] sm:w-[10%] opacity-90"
+          className="pointer-events-none absolute inset-y-0 left-0 w-[14%] sm:w-[12%] md:w-[10%]"
           style={{
-            backgroundImage:
-              "repeating-linear-gradient(135deg, #e63946 0 14px, #f4a261 14px 28px, #2a9d8f 28px 42px, #264653 42px 56px, #e9c46a 56px 70px, #457b9d 70px 84px)",
-            maskImage:
-              "radial-gradient(circle at 50% 50%, black 60%, transparent 62%)",
-            WebkitMaskImage:
-              "radial-gradient(circle at 50% 50%, black 60%, transparent 62%)",
-            maskSize: "30px 30px",
-            WebkitMaskSize: "30px 30px",
-            maskRepeat: "repeat",
-            WebkitMaskRepeat: "repeat",
+            backgroundImage: `url(${paniniPattern})`,
+            backgroundRepeat: "repeat-y",
+            backgroundSize: "100% auto",
+            backgroundPosition: "left top",
           }}
         />
         <div
-          className="pointer-events-none absolute inset-y-0 right-0 w-[8%] sm:w-[10%] opacity-90"
+          className="pointer-events-none absolute inset-y-0 right-0 w-[14%] sm:w-[12%] md:w-[10%]"
           style={{
-            backgroundImage:
-              "repeating-linear-gradient(-135deg, #e63946 0 14px, #f4a261 14px 28px, #2a9d8f 28px 42px, #264653 42px 56px, #e9c46a 56px 70px, #457b9d 70px 84px)",
-            maskImage:
-              "radial-gradient(circle at 50% 50%, black 60%, transparent 62%)",
-            WebkitMaskImage:
-              "radial-gradient(circle at 50% 50%, black 60%, transparent 62%)",
-            maskSize: "30px 30px",
-            WebkitMaskSize: "30px 30px",
-            maskRepeat: "repeat",
-            WebkitMaskRepeat: "repeat",
+            backgroundImage: `url(${paniniPattern})`,
+            backgroundRepeat: "repeat-y",
+            backgroundSize: "100% auto",
+            backgroundPosition: "right top",
+            transform: "scaleX(-1)",
           }}
         />
 
