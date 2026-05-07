@@ -221,12 +221,12 @@ export function AlbumExperience() {
   return (
     <>
       {/* FIXED CARDS LAYER */}
-      <div ref={cardsLayerRef} className="pointer-events-none fixed inset-0 z-30 hidden md:block">
+      <div ref={cardsLayerRef} className="pointer-events-none fixed inset-0 z-30">
         {players.map((p, i) => (
           <div
             key={p.name}
             ref={(el) => { cardsRef.current[i] = el; }}
-            className="absolute left-0 top-0 h-[310px] w-[220px] overflow-hidden rounded-2xl shadow-2xl ring-1 ring-white/20"
+            className="absolute left-0 top-0 h-[180px] w-[128px] overflow-hidden rounded-xl shadow-2xl ring-1 ring-white/20 sm:h-[230px] sm:w-[164px] md:h-[310px] md:w-[220px] md:rounded-2xl"
             style={{
               background: "linear-gradient(160deg, oklch(1 0 0 / 0.18), oklch(1 0 0 / 0.04))",
               backdropFilter: "blur(8px)",
