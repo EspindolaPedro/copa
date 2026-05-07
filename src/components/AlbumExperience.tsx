@@ -60,22 +60,22 @@ export function AlbumExperience() {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const activeRef = useRef(0);
   const [active, setActive] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const overlayRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const N = players.length;
       const W = () => window.innerWidth;
       const H = () => window.innerHeight;
-      const CARD_W = 220;
-      const CARD_H = 310;
 
       // Title letters
       const letters = titleRef.current?.querySelectorAll(".letter");
       if (letters) {
-        gsap.from(letters, { y: 200, opacity: 0, rotateX: -90, stagger: 0.04, duration: 1.1, ease: "expo.out", delay: 0.2 });
+        gsap.from(letters, { y: 200, opacity: 0, rotateX: -90, stagger: 0.04, duration: 1.1, ease: "expo.out", delay: 2.9 });
       }
 
-      // Initial scatter via gsap.set
+      // Final scatter setter
       const setScatter = () => {
         cardsRef.current.forEach((card, i) => {
           if (!card) return;
@@ -88,20 +88,48 @@ export function AlbumExperience() {
           });
         });
       };
-      setScatter();
 
-      // Entrance: cards fly in from below + spin into place
+      // Stack target during loading (centered fan)
+      const stackPos = (i: number) => {
+        const cardW = W() < 640 ? 128 : W() < 768 ? 164 : 220;
+        const cardH = W() < 640 ? 180 : W() < 768 ? 230 : 310;
+        const cx = W() / 2 - cardW / 2;
+        const cy = H() / 2 - cardH / 2 + 40;
+        const offset = (i - (N - 1) / 2) * (cardW * 0.55);
+        return { x: cx + offset, y: cy, rot: (i - (N - 1) / 2) * 6 };
+      };
+
+      // Phase 1 — cards fly in from bottom/corners into the centered stack
       cardsRef.current.forEach((card, i) => {
         if (!card) return;
-        gsap.from(card, {
-          y: `+=${H() * 0.9}`,
-          rotation: SCATTER[i].rot + (i % 2 === 0 ? -45 : 45),
-          scale: 0.6,
-          opacity: 0,
-          duration: 1.2,
-          ease: "expo.out",
-          delay: 0.4 + i * 0.08,
+        const target = stackPos(i);
+        const fromCorner = i % 2 === 0
+          ? { x: -200, y: H() + 200 }
+          : { x: W() + 200, y: H() + 200 };
+        gsap.set(card, { ...fromCorner, rotation: target.rot + (i % 2 ? 90 : -90), scale: 0.5, opacity: 0, zIndex: 30 + i });
+        gsap.to(card, {
+          x: target.x, y: target.y, rotation: target.rot, scale: 1, opacity: 1,
+          duration: 1.1, ease: "expo.out", delay: 0.3 + i * 0.1,
         });
+      });
+
+      // Phase 2 — at ~2.2s overlay slides up (frame), then cards scatter outward
+      const tl = gsap.timeline({ delay: 2.1 });
+      tl.to(overlayRef.current, {
+        yPercent: -100,
+        duration: 0.8,
+        ease: "expo.inOut",
+        onComplete: () => setLoading(false),
+      });
+      cardsRef.current.forEach((card, i) => {
+        if (!card) return;
+        tl.to(card, {
+          x: SCATTER[i].x * W(),
+          y: SCATTER[i].y * H(),
+          rotation: SCATTER[i].rot,
+          scale: 1,
+          duration: 0.9, ease: "expo.out",
+        }, 0.1 + i * 0.04);
       });
 
       // Continuous floating animation (only while in hero)
@@ -152,7 +180,7 @@ export function AlbumExperience() {
       // Pin showcase + drive stacking + cycling
       const stackTarget = (order: number) => {
         const baseX = W() * 0.06;
-        const baseY = H() * 0.5 - CARD_H / 2;
+        const baseY = H() * 0.5 - 310 / 2;
         return {
           x: baseX - order * 16,
           y: baseY + order * 12,
@@ -220,8 +248,58 @@ export function AlbumExperience() {
 
   return (
     <>
+      {/* LOADING OVERLAY — slides up like a frame */}
+      <div
+        ref={overlayRef}
+        className="fixed inset-0 z-[55] flex flex-col items-center justify-start pt-[14vh]"
+        style={{
+          backgroundColor: "#1f5a3a",
+          backgroundImage:
+            "linear-gradient(180deg, #1f5a3a 0%, #194a30 100%)",
+          willChange: "transform",
+        }}
+        aria-hidden={!loading}
+      >
+        {/* Decorative side strips (colorful confetti vibe) */}
+        <div
+          className="pointer-events-none absolute inset-y-0 left-0 w-[8%] sm:w-[10%] opacity-90"
+          style={{
+            backgroundImage:
+              "repeating-linear-gradient(135deg, #e63946 0 14px, #f4a261 14px 28px, #2a9d8f 28px 42px, #264653 42px 56px, #e9c46a 56px 70px, #457b9d 70px 84px)",
+            maskImage:
+              "radial-gradient(circle at 50% 50%, black 60%, transparent 62%)",
+            WebkitMaskImage:
+              "radial-gradient(circle at 50% 50%, black 60%, transparent 62%)",
+            maskSize: "30px 30px",
+            WebkitMaskSize: "30px 30px",
+            maskRepeat: "repeat",
+            WebkitMaskRepeat: "repeat",
+          }}
+        />
+        <div
+          className="pointer-events-none absolute inset-y-0 right-0 w-[8%] sm:w-[10%] opacity-90"
+          style={{
+            backgroundImage:
+              "repeating-linear-gradient(-135deg, #e63946 0 14px, #f4a261 14px 28px, #2a9d8f 28px 42px, #264653 42px 56px, #e9c46a 56px 70px, #457b9d 70px 84px)",
+            maskImage:
+              "radial-gradient(circle at 50% 50%, black 60%, transparent 62%)",
+            WebkitMaskImage:
+              "radial-gradient(circle at 50% 50%, black 60%, transparent 62%)",
+            maskSize: "30px 30px",
+            WebkitMaskSize: "30px 30px",
+            maskRepeat: "repeat",
+            WebkitMaskRepeat: "repeat",
+          }}
+        />
+
+        <img src={paniniLogo} alt="Panini" className="relative z-10 h-10 w-auto sm:h-12" />
+        <div className="relative z-10 mt-10 font-sans text-lg text-white/95 sm:text-2xl">
+          Carregando a experiência<span className="inline-block animate-pulse">...</span>
+        </div>
+      </div>
+
       {/* FIXED CARDS LAYER */}
-      <div ref={cardsLayerRef} className="pointer-events-none fixed inset-0 z-30">
+      <div ref={cardsLayerRef} className={`pointer-events-none fixed inset-0 ${loading ? "z-[60]" : "z-30"}`}>
         {players.map((p, i) => (
           <div
             key={p.name}
