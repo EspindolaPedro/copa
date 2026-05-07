@@ -242,20 +242,20 @@ export function AlbumExperience() {
         />
 
         <motion.div initial={{ y: -40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.8 }} className="relative z-40 flex items-center justify-between px-8 py-6 md:px-16">
-          <div className="font-condensed text-2xl tracking-widest text-neutral-900">PANINI <span style={{ color: RED }}>★</span> ALBUM</div>
-          <div className="hidden gap-8 font-condensed text-sm tracking-[0.3em] text-neutral-700 md:flex">
+          <div className="font-condensed text-2xl tracking-widest text-white">PANINI <span style={{ color: RED }}>★</span> ALBUM</div>
+          <div className="hidden gap-8 font-condensed text-sm tracking-[0.3em] text-white/70 md:flex">
             <span>STICKERS</span><span>TEAMS</span><span>STORE</span>
           </div>
           <button className="rounded-full px-6 py-2 font-condensed tracking-widest text-white shadow-lg transition-transform hover:scale-105" style={{ backgroundColor: RED }}>COLETAR</button>
         </motion.div>
 
         <div className="relative z-20 mx-auto flex min-h-[calc(100vh-100px)] max-w-7xl flex-col items-center justify-center px-6 text-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="mb-6 inline-flex items-center gap-3 rounded-full border border-neutral-900/15 bg-white/70 px-5 py-2 backdrop-blur-md">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="mb-6 inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/5 px-5 py-2 backdrop-blur-md">
             <span className="h-2 w-2 animate-pulse rounded-full" style={{ backgroundColor: RED }} />
-            <span className="font-condensed text-sm tracking-[0.3em] text-neutral-700">EDIÇÃO OFICIAL · USA · CAN · MEX</span>
+            <span className="font-condensed text-sm tracking-[0.3em] text-white/80">EDIÇÃO OFICIAL · USA · CAN · MEX</span>
           </motion.div>
 
-          <h1 ref={titleRef} className="font-display text-[clamp(4rem,15vw,12rem)] leading-[0.85] tracking-tighter text-neutral-900" style={{ perspective: "1000px" }}>
+          <h1 ref={titleRef} className="font-display text-[clamp(4rem,15vw,12rem)] leading-[0.85] tracking-tighter text-white" style={{ perspective: "1000px" }}>
             {title.split("").map((ch, i) => (
               <span key={i} className={`letter inline-block ${ch === " " ? "w-[0.3em]" : ""} ${i < 4 ? "" : "text-gradient-wc"}`}>
                 {ch === " " ? "\u00A0" : ch}
@@ -263,7 +263,7 @@ export function AlbumExperience() {
             ))}
           </h1>
 
-          <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.4, duration: 0.8 }} className="mt-8 max-w-xl text-balance text-base text-neutral-700 md:text-lg">
+          <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.4, duration: 0.8 }} className="mt-8 max-w-xl text-balance text-base text-white/75 md:text-lg">
             O álbum oficial dos craques que vão decidir a maior copa do mundo.
           </motion.p>
 
@@ -271,10 +271,10 @@ export function AlbumExperience() {
             <button className="group relative overflow-hidden rounded-full px-10 py-4 font-condensed text-lg tracking-[0.2em] text-white shadow-lg" style={{ backgroundColor: RED }}>
               <span className="relative z-10">ABRIR PACOTINHO</span>
             </button>
-            <button className="rounded-full border border-neutral-900/20 bg-white/60 px-10 py-4 font-condensed text-lg tracking-[0.2em] text-neutral-900 backdrop-blur-md transition-colors hover:bg-white">VER ÁLBUM</button>
+            <button className="rounded-full border border-white/30 bg-white/5 px-10 py-4 font-condensed text-lg tracking-[0.2em] text-white backdrop-blur-md transition-colors hover:bg-white/10">VER ÁLBUM</button>
           </motion.div>
 
-          <div className="mt-12 font-condensed text-xs tracking-[0.4em] text-neutral-500">↓ ROLE PARA COLETAR</div>
+          <div className="mt-12 font-condensed text-xs tracking-[0.4em] text-white/50">↓ ROLE PARA COLETAR</div>
         </div>
       </section>
 
