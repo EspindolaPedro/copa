@@ -282,39 +282,10 @@ export function AlbumExperience() {
           }}
         />
 
-        <img src={paniniLogo} alt="Panini" className="relative z-10 h-10 w-auto sm:h-12 intro-fade" style={{ animationDelay: "0ms" }} />
-
-        <div className="relative z-10 mt-10 flex flex-col items-center text-center text-white">
-          <span className="intro-fade font-condensed text-[10px] tracking-[0.6em] text-white/70 sm:text-xs" style={{ animationDelay: "150ms" }}>
-            EDIÇÃO OFICIAL · FIFA WORLD CUP
-          </span>
-
-          <h2
-            className="mt-4 font-display leading-[0.85] tracking-tight"
-            style={{ fontSize: "clamp(2.75rem, 9vw, 7rem)" }}
-          >
-            <span className="intro-word inline-block" style={{ animationDelay: "300ms" }}>O</span>{" "}
-            <span className="intro-word inline-block" style={{ animationDelay: "420ms" }}>MUNDO</span>{" "}
-            <span className="intro-word inline-block italic text-[#f4d35e]" style={{ animationDelay: "540ms" }}>inteiro</span>
-            <br />
-            <span className="intro-word inline-block" style={{ animationDelay: "680ms" }}>em</span>{" "}
-            <span className="intro-word inline-block" style={{ animationDelay: "800ms" }}>uma</span>{" "}
-            <span className="intro-word inline-block" style={{ animationDelay: "920ms" }}>figurinha.</span>
-          </h2>
-
-          <div className="intro-fade mt-8 flex items-center gap-3" style={{ animationDelay: "1200ms" }}>
-            <span className="h-px w-10 bg-white/50" />
-            <span className="font-condensed text-[10px] tracking-[0.5em] text-white/80 sm:text-xs">COPA 2026</span>
-            <span className="h-px w-10 bg-white/50" />
-          </div>
+        <img src={paniniLogo} alt="Panini" className="relative z-10 h-10 w-auto sm:h-12" />
+        <div className="relative z-10 mt-10 font-sans text-lg text-white/95 sm:text-2xl">
+          Carregando a experiência<span className="inline-block animate-pulse">...</span>
         </div>
-
-        <style>{`
-          @keyframes introUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
-          @keyframes introFade { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
-          .intro-word { opacity: 0; animation: introUp 0.9s cubic-bezier(0.2,0.8,0.2,1) forwards; }
-          .intro-fade { opacity: 0; animation: introFade 0.8s ease-out forwards; }
-        `}</style>
       </div>
 
       {/* FIXED CARDS LAYER */}
