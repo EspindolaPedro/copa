@@ -1,0 +1,10 @@
+{
+  "buildCommand": "npm run build:vercel",
+  "outputDirectory": "dist/client",
+  "rewrites": [
+    {
+      "source": "/((?!assets/|_build/|favicon.ico|robots.txt|sitemap.xml).*)",
+      "destination": "/"
+    }
+  ]
+}
