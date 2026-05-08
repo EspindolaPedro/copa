@@ -3,7 +3,7 @@ import { gsap } from "gsap";
 import Galaxy from "@/components/Galaxy";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "motion/react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 import bellingham from "@/assets/players/bellingham.png";
 import cr7 from "@/assets/players/cr7.png";
 import haaland from "@/assets/players/haaland.png";
@@ -432,28 +432,15 @@ export function AlbumExperience() {
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.6, duration: 0.8 }} className="mt-10 flex justify-center sm:mt-12">
             <button
               className="group relative inline-flex items-center gap-4 rounded-full p-1.5 pr-2 font-condensed text-base tracking-[0.28em] text-white transition-all duration-500 hover:gap-6 sm:text-lg"
-              style={{
-                backgroundImage: `linear-gradient(135deg, ${RED} 0%, #b91c1c 50%, ${RED} 100%)`,
-                boxShadow: `inset 0 1px 0 rgba(255,255,255,0.25), 0 0 0 1px rgba(255,255,255,0.1)`,
-              }}
-            >
-              {/* Animated gradient ring */}
-              <span
-                className="pointer-events-none absolute -inset-px rounded-full opacity-70 blur-[2px] transition-opacity duration-500 group-hover:opacity-100"
-                style={{
-                  backgroundImage: `conic-gradient(from 0deg, #fff, #fbbf24, #fff, #fca5a5, #fff)`,
-                  WebkitMask: "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
-                  WebkitMaskComposite: "xor",
-                  maskComposite: "exclude",
-                  padding: "1.5px",
-                  animation: "spin 6s linear infinite",
-                }}
-              />
-
+            style={{
+              backgroundImage: `linear-gradient(135deg, ${RED} 0%, #b91c1c 50%, ${RED} 100%)`,
+              boxShadow: `inset 0 1px 0 rgba(255,255,255,0.25), 0 0 0 1px rgba(255,255,255,0.1)`,
+            }}
+          >
               <span className="relative z-10 pl-6 pr-2 sm:pl-8">ABRIR PACOTINHO</span>
 
               <span
-                className="relative z-10 flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border border-white/50 text-white transition-transform duration-500 group-hover:rotate-[360deg] sm:h-14 sm:w-14"
+                className="relative z-10 flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border border-white/50 text-white transition-transform duration-500 group-hover:scale-105 sm:h-14 sm:w-14"
                 style={{
                   backgroundImage:
                     "linear-gradient(135deg, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.15) 45%, rgba(255,255,255,0.05) 100%)",
@@ -561,7 +548,6 @@ function AlbumReveal() {
   const imgWrapRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
-  const bgNumRef = useRef<HTMLDivElement>(null);
   const stickersRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
@@ -588,18 +574,22 @@ function AlbumReveal() {
         y: "+=14", duration: 3.2, ease: "sine.inOut", yoyo: true, repeat: -1,
       });
 
-      gsap.to(bgNumRef.current, {
-        yPercent: -25,
-        ease: "none",
-        scrollTrigger: { trigger: ref.current!, start: "top bottom", end: "bottom top", scrub: true },
-      });
-
       const items = stickersRef.current?.querySelectorAll(".al-sticker");
       if (items) {
         gsap.from(items, {
           y: 40, opacity: 0, scale: 0.7, rotate: () => gsap.utils.random(-30, 30),
           stagger: 0.1, duration: 0.9, ease: "back.out(1.6)",
           scrollTrigger: { trigger: ref.current!, start: "top 65%" },
+        });
+
+        gsap.to(items, {
+          y: (i) => (i % 2 === 0 ? "-=12" : "+=12"),
+          rotate: (i) => (i % 2 === 0 ? "+=3" : "-=3"),
+          duration: (i) => 2.6 + i * 0.18,
+          ease: "sine.inOut",
+          yoyo: true,
+          repeat: -1,
+          stagger: 0.08,
         });
       }
 
@@ -613,9 +603,17 @@ function AlbumReveal() {
           rotateY: x * 10, rotateX: -y * 10, transformPerspective: 900,
           duration: 0.6, ease: "power2.out",
         });
+        gsap.to(stickersRef.current?.querySelectorAll(".al-sticker") ?? [], {
+          x: (i) => x * (8 + i * 3),
+          y: (i) => y * (5 + i * 2),
+          duration: 0.8,
+          ease: "power2.out",
+          overwrite: "auto",
+        });
       };
       const onLeave = () => {
         gsap.to(imgRef.current, { rotateY: 0, rotateX: 0, duration: 0.8, ease: "power3.out" });
+        gsap.to(stickersRef.current?.querySelectorAll(".al-sticker") ?? [], { x: 0, y: 0, duration: 0.8, ease: "power3.out" });
       };
       const wrap = imgWrapRef.current;
       wrap?.addEventListener("mousemove", onMove);
@@ -632,7 +630,7 @@ function AlbumReveal() {
   return (
     <section
       ref={ref}
-      className="relative z-30 overflow-hidden py-28 md:py-40"
+      className="relative z-30 overflow-hidden py-24 md:py-36"
       style={{ backgroundColor: "oklch(0.98 0.005 90)" }}
     >
       <div
@@ -643,26 +641,15 @@ function AlbumReveal() {
         }}
       />
 
-      <div
-        ref={bgNumRef}
-        className="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2 select-none text-center font-display leading-none tracking-tighter"
-        style={{
-          fontSize: "clamp(18rem, 42vw, 44rem)",
-          color: "transparent",
-          WebkitTextStroke: "2px oklch(0 0 0 / 0.07)",
-        }}
-      >
-        26
-      </div>
-
-      <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-16 px-6 md:grid-cols-12 md:gap-10 md:px-10">
+      <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-6 md:grid-cols-12 md:gap-10 md:px-10">
         <div className="md:col-span-5">
-          <div className="font-condensed text-xs tracking-[0.45em] text-neutral-500">
+          <div className="inline-flex items-center gap-2 rounded-full border border-neutral-900/10 bg-white/70 px-4 py-2 font-condensed text-[10px] tracking-[0.34em] text-neutral-600 shadow-sm backdrop-blur-md sm:text-xs">
+            <Sparkles className="size-3 text-[oklch(0.64_0.23_25)]" />
             EDIÇÃO OFICIAL · LIVRO ILUSTRADO
           </div>
           <h2
             ref={titleRef}
-            className="mt-4 font-display text-[clamp(3.5rem,8vw,7rem)] leading-[0.85] tracking-tight text-neutral-900"
+            className="mt-5 whitespace-nowrap font-display text-[clamp(3.25rem,6.2vw,6.85rem)] leading-[0.85] tracking-tight text-neutral-900"
             style={{ perspective: "1000px" }}
           >
             {title.split("").map((ch, i) => (
@@ -675,80 +662,109 @@ function AlbumReveal() {
               </span>
             ))}
           </h2>
-          <p className="mt-6 max-w-md font-sans text-base leading-relaxed text-neutral-600">
+          <p className="mt-6 max-w-lg font-sans text-base leading-relaxed text-neutral-600 md:text-lg">
             Capa dura, 80 páginas e espaço para 670 figurinhas. O álbum oficial
             que vai guardar a Copa 2026 inteira.
           </p>
 
-          <div className="mt-10 flex flex-wrap items-center gap-x-10 gap-y-6">
+          <div className="mt-9 grid max-w-lg grid-cols-3 gap-3 sm:gap-4">
             {[
-              { n: "670", l: "FIGURINHAS" },
-              { n: "48", l: "SELEÇÕES" },
-              { n: "80", l: "PÁGINAS" },
-            ].map((s) => (
-              <div key={s.l}>
-                <div className="font-display text-4xl leading-none text-neutral-900">{s.n}</div>
-                <div className="mt-1 font-condensed text-[10px] tracking-[0.35em] text-neutral-500">{s.l}</div>
+              { n: "670", l: "FIGURINHAS", color: "#ef4444" },
+              { n: "48", l: "SELEÇÕES", color: "#2563eb" },
+              { n: "80", l: "PÁGINAS", color: "#16a34a" },
+            ].map(({ n, l, color }) => (
+              <div
+                key={l}
+                className="group relative overflow-hidden rounded-lg border border-neutral-900/10 bg-white/85 px-4 py-5 shadow-[0_12px_30px_rgba(15,23,42,0.08)] backdrop-blur-md transition-transform duration-300 hover:-translate-y-1"
+              >
+                <div className="absolute inset-x-0 bottom-0 h-1" style={{ backgroundColor: color }} />
+                <div className="mb-4 flex justify-end">
+                  <span className="h-2 w-2 rounded-full" style={{ backgroundColor: color, boxShadow: `0 0 16px ${color}80` }} />
+                </div>
+                <div className="font-display text-4xl leading-none text-neutral-900 sm:text-5xl">{n}</div>
+                <div className="mt-1 font-condensed text-[9px] tracking-[0.26em] text-neutral-500 sm:text-[10px]">{l}</div>
               </div>
             ))}
           </div>
 
           <button
-            className="group mt-10 inline-flex items-center gap-3 rounded-full px-7 py-4 font-condensed text-sm font-bold tracking-[0.3em] text-white shadow-xl transition-transform hover:scale-105"
-            style={{ backgroundColor: RED, boxShadow: "0 16px 40px -12px oklch(0.64 0.23 25 / 0.6)" }}
+            className="group relative mt-10 inline-flex items-center gap-4 rounded-full p-1.5 pr-2 font-condensed text-base tracking-[0.28em] text-white transition-all duration-500 hover:gap-6 sm:text-lg"
+            style={{
+              backgroundImage: `linear-gradient(135deg, ${RED} 0%, #b91c1c 50%, ${RED} 100%)`,
+              boxShadow: `inset 0 1px 0 rgba(255,255,255,0.25), 0 0 0 1px rgba(255,255,255,0.12), 0 18px 46px -14px ${RED}`,
+            }}
           >
-            QUERO O MEU
-            <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+            <span className="relative z-10 pl-6 pr-2 sm:pl-8">QUERO O MEU</span>
+            <span
+              className="relative z-10 flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border border-white/50 text-white transition-transform duration-500 group-hover:scale-105 sm:h-14 sm:w-14"
+              style={{
+                backgroundImage:
+                  "linear-gradient(135deg, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.15) 45%, rgba(255,255,255,0.05) 100%)",
+                backdropFilter: "blur(12px) saturate(180%)",
+                WebkitBackdropFilter: "blur(12px) saturate(180%)",
+                boxShadow:
+                  "inset 0 1px 1px rgba(255,255,255,0.6), inset 0 -1px 2px rgba(255,255,255,0.15), 0 4px 14px rgba(0,0,0,0.2)",
+              }}
+            >
+              <span className="pointer-events-none absolute inset-x-2 top-1 h-1/3 rounded-full bg-white/40 blur-[2px]" />
+              <ArrowRight className="relative h-5 w-5 drop-shadow-[0_1px_1px_rgba(0,0,0,0.25)]" strokeWidth={2.5} />
+            </span>
           </button>
         </div>
 
         <div className="md:col-span-7">
-          <div ref={imgWrapRef} className="relative mx-auto flex aspect-square max-w-[560px] items-center justify-center">
+          <div ref={imgWrapRef} className="relative mx-auto flex aspect-[1.08/1] max-w-[700px] items-center justify-center md:mx-auto md:justify-self-center">
             <div
-              className="pointer-events-none absolute bottom-[8%] left-1/2 h-[60px] w-[70%] -translate-x-1/2 rounded-[50%] blur-2xl"
-              style={{ background: "oklch(0 0 0 / 0.35)" }}
+              className="pointer-events-none absolute bottom-[8%] left-1/2 h-[72px] w-[74%] -translate-x-1/2 rounded-[50%] blur-2xl"
+              style={{ background: "oklch(0 0 0 / 0.32)" }}
             />
-            <div className="pointer-events-none absolute -left-6 top-10 size-24 rounded-full opacity-70 blur-3xl" style={{ background: "#3b82f6" }} />
-            <div className="pointer-events-none absolute -right-6 bottom-12 size-28 rounded-full opacity-70 blur-3xl" style={{ background: "#fbbf24" }} />
 
             <img
               ref={imgRef}
               src={albumImg}
               alt="Álbum oficial Copa 2026"
-              className="relative z-10 w-[88%] drop-shadow-[0_30px_50px_rgba(0,0,0,0.35)]"
+              className="relative z-10 w-[108%] max-w-none drop-shadow-[0_36px_64px_rgba(0,0,0,0.36)] md:w-[112%]"
               draggable={false}
               style={{ willChange: "transform" }}
             />
 
             <div ref={stickersRef} className="pointer-events-none absolute inset-0">
               <div
-                className="al-sticker absolute left-[2%] top-[18%] rounded-md bg-white px-3 py-1.5 shadow-lg ring-1 ring-black/10"
+                className="al-sticker absolute left-[2%] top-[12%] rounded-md bg-white px-3 py-1.5 shadow-lg ring-1 ring-black/10"
                 style={{ transform: "rotate(-8deg)" }}
               >
                 <div className="font-condensed text-[9px] tracking-[0.3em] text-neutral-500">FIFA 2026</div>
                 <div className="font-display text-sm text-neutral-900">★ RARA</div>
               </div>
               <div
-                className="al-sticker absolute right-[4%] top-[8%] flex size-12 items-center justify-center rounded-full text-white shadow-lg"
+                className="al-sticker absolute right-[6%] top-[4%] flex size-14 items-center justify-center rounded-full text-white shadow-xl"
                 style={{ background: RED, transform: "rotate(10deg)" }}
               >
-                <span className="font-display text-xl">10</span>
+                <span className="font-display text-2xl">10</span>
               </div>
               <div
-                className="al-sticker absolute right-[0%] bottom-[18%] rounded-md bg-white px-3 py-1.5 shadow-lg ring-1 ring-black/10"
+                className="al-sticker absolute right-[0%] bottom-[23%] rounded-md bg-white px-3 py-1.5 shadow-lg ring-1 ring-black/10"
                 style={{ transform: "rotate(7deg)" }}
               >
                 <div className="font-condensed text-[9px] tracking-[0.3em] text-neutral-500">BRASIL</div>
-                <div className="font-display text-sm text-neutral-900">🇧🇷 NEYMAR</div>
+                <div className="font-display text-sm text-neutral-900">BR NEYMAR</div>
               </div>
               <div
-                className="al-sticker absolute bottom-[6%] left-[10%] flex items-center gap-1 rounded-full bg-neutral-900 px-3 py-1.5 shadow-lg"
-                style={{ transform: "rotate(-5deg)" }}
+                className="al-sticker absolute left-[17%] bottom-[23%] rounded-md bg-white px-3 py-2 shadow-lg ring-1 ring-black/10"
+                style={{ transform: "rotate(8deg)" }}
               >
-                {["#fbbf24", "#ef4444", "#3b82f6", "#10b981"].map((c) => (
-                  <span key={c} className="size-2 rounded-full" style={{ backgroundColor: c }} />
-                ))}
-                <span className="ml-1 font-condensed text-[10px] tracking-[0.25em] text-white">PANINI</span>
+                <div className="font-condensed text-[9px] tracking-[0.28em] text-neutral-500">PACOTINHO</div>
+                <div className="font-display text-sm text-neutral-900">5 FIGURINHAS</div>
+              </div>
+              <div
+                className="al-sticker absolute right-[17%] top-[19%] rounded-full px-4 py-2 font-condensed text-[10px] tracking-[0.28em] text-white shadow-lg"
+                style={{
+                  background:
+                    "linear-gradient(135deg, #fbbf24 0%, #ef4444 38%, #2563eb 72%, #16a34a 100%)",
+                  transform: "rotate(-7deg)",
+                }}
+              >
+                WORLD CUP
               </div>
             </div>
           </div>
